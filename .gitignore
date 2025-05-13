@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+.Thumbs.db
+.directory
 
 # debug
 npm-debug.log*
@@ -32,6 +34,16 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# kubernetes und docker (k8s-manifest.yaml sollte im Repo bleiben, da es in CI/CD verwendet wird)
+# /k8s
+# jedoch nicht die secrets
+*-secrets.yaml
+kubeconfig.yaml
 
 # vercel
 .vercel
@@ -39,3 +51,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# VSCode, IntelliJ, etc.
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.iws
+*.sublime-workspace
+
+# Local backup files
+*.bak
+*.backup
+*.old
+*.swp
+
+# Logs
+logs
+*.log
+
+# Temporary directories
+.temp/
+.tmp/
+.cache/
