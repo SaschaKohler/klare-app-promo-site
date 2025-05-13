@@ -76,31 +76,31 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
-              href="#features"
+              href="/#features"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               Features
             </Link>
             <Link
-              href="#methode"
+              href="/#methode"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               KLARE Methode
             </Link>
             <Link
-              href="#showcase"
+              href="/#showcase"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               Preview
             </Link>
             {/* <Link  */}
-            {/*   href="#about"  */}
+            {/*   href="/#about"  */}
             {/*   className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? 'text-klare-text dark:text-dark-klare-text' : 'text-klare-text dark:text-dark-klare-text'}`} */}
             {/* > */}
             {/*   Über Uns */}
             {/* </Link> */}
             <Link
-              href="#faq"
+              href="/#faq"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               FAQ
@@ -152,21 +152,21 @@ export default function Header() {
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <Link
-              href="#features"
+              href="/#features"
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
             </Link>
             <Link
-              href="#methode"
+              href="/#methode"
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               KLARE Methode
             </Link>
             <Link
-              href="#showcase"
+              href="/#showcase"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -179,7 +179,7 @@ export default function Header() {
             {/*   Über Uns */}
             {/* </Link> */}
             <Link
-              href="#faq"
+              href="/#faq"
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -201,4 +201,3 @@ export default function Header() {
     </header>
   );
 }
-

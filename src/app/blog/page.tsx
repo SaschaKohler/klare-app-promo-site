@@ -17,10 +17,10 @@ export default async function BlogPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 text-klare-text dark:text-dark-klare-text">
-            KLARE App <span className="text-klare-a dark:text-dark-klare-a">Entwicklungsblog</span>
+            Mein KLARE <span className="text-klare-a dark:text-dark-klare-a">Herzensprojekt</span>
           </h1>
-          <p className="text-lg text-klare-text-secondary dark:text-dark-klare-text-secondary max-w-2xl mx-auto">
-            Verfolge die Entwicklung der KLARE App. Hier teile ich regelmäßig Updates, technische Einblicke und Gedanken zum Entwicklungsprozess.
+          <p className="text-lg text-klare-text-secondary dark:text-dark-klare-text-secondary max-w-3xl mx-auto">
+            Willkommen in meinem persönlichen Blog zur KLARE-Methode. Hier teile ich meine Erfahrungen, Gedanken und Erkenntnisse auf dem Weg zu mehr Kongruenz – und gebe dir Einblicke in die Entwicklung meines Herzensprojekts, der KLARE App.
           </p>
         </div>
 
@@ -99,7 +99,7 @@ export default async function BlogPage() {
         </div>
 
         {/* Newsletter */}
-        <div className="bg-gradient-to-r from-klare-k to-klare-a dark:from-dark-klare-k dark:to-dark-klare-a text-white rounded-xl p-8 md:p-12">
+        <div className="bg-gradient-to-r from-klare-k to-klare-a dark:from-dark-klare-k dark:to-dark-klare-a text-white rounded-xl p-8 md:p-12 mb-12">
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Bleibe auf dem Laufenden</h3>
             <p className="mb-8">
@@ -114,6 +114,40 @@ export default async function BlogPage() {
               <button className="bg-white text-klare-k dark:text-dark-klare-k px-6 py-3 rounded-full sm:rounded-l-none font-medium hover:bg-white/90 transition-colors whitespace-nowrap">
                 Abonnieren
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Über den Autor */}
+        <div className="bg-white dark:bg-dark-klare-card shadow-xl rounded-xl overflow-hidden mb-12">
+          <div className="grid md:grid-cols-3 gap-0">
+            <div className="md:col-span-1 relative h-full min-h-[280px] md:min-h-full bg-gradient-to-br from-klare-k to-klare-a flex items-center justify-center p-8">
+              <div className="bg-white/10 w-48 h-48 rounded-full overflow-hidden mx-auto relative">
+                {/* Hier kannst du ein Bild einfügen */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-6xl font-bold text-white">SK</span>
+                </div>
+              </div>
+            </div>
+            <div className="md:col-span-2 p-8">
+              <h3 className="text-2xl font-bold mb-3 text-klare-text dark:text-dark-klare-text">Über mich - Sascha Kohler</h3>
+              <p className="text-klare-text-secondary dark:text-dark-klare-text-secondary mb-4">
+                Die KLARE-Methode und die darauf basierende App sind zu 100% meine eigene Entwicklung - entstanden aus persönlichen Lebenserfahrungen und meiner beruflichen Weiterentwicklung. Als Schöpfer dieser Methode möchte ich Menschen helfen, ihre persönliche Entwicklung selbstbestimmt und im eigenen Tempo zu gestalten.
+              </p>
+              <p className="text-klare-text-secondary dark:text-dark-klare-text-secondary mb-4">
+                Mein Ansatz verbindet bewährte psychologische Konzepte mit praktischer Alltagsanwendung. Die KLARE-Methode ist das Ergebnis jahrelanger Erfahrung und der Erkenntnis, dass echte Transformation durch Kongruenz statt Optimierung entsteht.
+              </p>
+              <div className="mt-4">
+                <Link 
+                  href="/blog/meine-reise-zur-klare-methode" 
+                  className="text-klare-a dark:text-dark-klare-a font-medium hover:underline inline-flex items-center"
+                >
+                  Mehr über meine Reise zur KLARE-Methode
+                  <svg className="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

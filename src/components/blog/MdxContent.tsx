@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MdxComponents from './MdxComponents';
