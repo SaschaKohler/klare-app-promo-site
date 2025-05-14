@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllBlogPosts } from "@/lib/blog/utils";
+import { formatDate, getAllBlogPosts } from "@/lib/blog/utils";
 
 export const metadata = {
   title: "KLARE App Entwicklungsblog | Der Weg zur App",
@@ -47,24 +47,25 @@ export default async function BlogPage() {
                     <span className="bg-white/20 px-4 py-1.5 rounded-full text-sm text-white">
                       Neuer Beitrag
                     </span>
-                    {!blogPosts[0].published && process.env.NEXT_PUBLIC_ADMIN_MODE === "true" && (
-                      <span className="bg-amber-500/80 px-4 py-1.5 rounded-full text-sm text-white">
-                        Entwurf
-                      </span>
-                    )}
+                    {!blogPosts[0].published &&
+                      process.env.NEXT_PUBLIC_ADMIN_MODE === "true" && (
+                        <span className="bg-amber-500/80 px-4 py-1.5 rounded-full text-sm text-white">
+                          Entwurf
+                        </span>
+                      )}
                   </div>
-                  
+
                   {/* Title */}
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white max-w-sm">
                     {blogPosts[0].title}
                   </h2>
-                  
+
                   {/* Excerpt and CTA */}
                   <div className="flex flex-col items-center">
                     <p className="text-white/90 text-base mb-8 max-w-xs">
                       {blogPosts[0].excerpt}
                     </p>
-                    
+
                     <Link
                       href={`/blog/${blogPosts[0].slug}`}
                       className="bg-white text-klare-a px-6 py-2.5 rounded-full font-medium hover:bg-white/90 transition-colors"
@@ -85,7 +86,7 @@ export default async function BlogPage() {
                   <div className="ml-3">
                     <p className="font-medium">{blogPosts[0].author}</p>
                     <p className="text-sm text-klare-text-secondary dark:text-dark-klare-text-secondary">
-                      {blogPosts[0].date}
+                      {formatDate(blogPosts[0].date)}
                     </p>
                   </div>
                 </div>
@@ -129,7 +130,7 @@ export default async function BlogPage() {
               </div>
               <div className="p-5">
                 <p className="text-sm text-klare-text-secondary dark:text-dark-klare-text-secondary mb-2">
-                  {post.date}
+                  {formatDate(post.date)}
                 </p>
                 <h3 className="text-xl font-bold mb-2 text-klare-text dark:text-dark-klare-text">
                   {post.title}

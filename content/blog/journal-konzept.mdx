@@ -5,6 +5,7 @@ author: "Sascha Kohler"
 excerpt: "Das Journal-Feature ist einer meiner persönlichen Favoriten in der KLARE App. Hier erzähle ich, wie es dir dabei hilft, Kongruenzmomente in deinem Alltag zu erkennen und zu reflektieren."
 category: "Features"
 coverImage: "/images/blog/journal.jpg"
+published: false
 ---
 
 Die Kongruenz-Arbeit ist ein kontinuierlicher Prozess, der im Alltag gelebt werden will. Um diesen Prozess zu unterstützen, habe ich in der KLARE App das Journal-Feature entwickelt – ein digitales Tagebuch, das dir hilft, Kongruenzmomente zu erkennen, zu reflektieren und zu verstärken.
@@ -29,7 +30,7 @@ Die regelmäßige Dokumentation von Kongruenzmomenten hilft dabei:
 
 Bei der Entwicklung des Journal-Features haben wir besonderen Wert auf Benutzerfreundlichkeit und Tiefe gelegt. Es soll einfach genug sein, um täglich genutzt zu werden, aber tiefgründig genug, um echte Transformation zu unterstützen.
 
-<FeatureList
+<BlogFeatureList
   items={[
     "Check-ins: Kurze, tägliche Einträge mit Kongruenz-Bewertung",
     "Reflexionen: Tiefergehende Einträge mit geführten Fragen",
@@ -44,7 +45,7 @@ Bei der Entwicklung des Journal-Features haben wir besonderen Wert auf Benutzerf
 
 Als ich die technische Umsetzung des Journal-Features plante, war es mir wichtig, ein flexibles Datenmodell zu schaffen, das verschiedene Eintragstypen unterstützt und gleichzeitig eine einfache Analyse ermöglicht.
 
-```typescript
+<CodeSnippet language="typescript" code={`
 export type JournalEntryType =
   | "check-in"
   | "reflection"
@@ -64,7 +65,8 @@ export interface JournalEntry {
   location?: string;
   images?: string[];
 }
-```
+`}
+/>
 
 Besonders stolz bin ich auf die Verbindung zwischen dem Journal und anderen Features der KLARE App:
 
@@ -86,7 +88,7 @@ Die Journal-Oberfläche bietet:
 - Eine Stimmungs- und Kongruenz-Tracking-Visualisierung
 - Eine Suchfunktion für schnellen Zugriff auf bestimmte Themen
 
-<GradientBox>
+<BlogGradientBox>
   <h3 className="text-xl font-bold mb-4">Die Kraft regelmäßiger Reflexion</h3>
   <p className="mb-0">
     Aus meiner eigenen Erfahrung und unterstützt durch zahlreiche Studien weiß
@@ -95,7 +97,7 @@ Die Journal-Oberfläche bietet:
     Journal-Feature der KLARE App macht diese kraftvolle Praxis einfach und
     zugänglich.
   </p>
-</GradientBox>
+</BlogGradientBox>
 
 ## Integration in den KLARE-Prozess
 
@@ -123,3 +125,6 @@ Das Journal-Feature ist mehr als nur ein digitales Tagebuch – es ist ein leist
 
 Ich freue mich darauf, dich auf diesem Weg zu begleiten und bin gespannt auf dein Feedback, wenn du das Journal-Feature selbst ausprobierst.
 
+```
+
+```

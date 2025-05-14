@@ -25,7 +25,10 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
 }) => {
   // Detailed logging for debugging
   console.log("BlogHeader - image path received:", image);
-  console.log("BlogHeader - customImage received:", customImage ? "Present" : "Not present");
+  console.log(
+    "BlogHeader - customImage received:",
+    customImage ? "Present" : "Not present",
+  );
   // Format date to match the old format
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
     day: "numeric",
@@ -85,9 +88,9 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
           <span className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm text-klare-text-secondary dark:text-dark-klare-text-secondary">
             {category}
           </span>
-          
+
           {/* Entwurfs-Badge für nicht veröffentlichte Beiträge */}
-          {!published && process.env.NEXT_PUBLIC_ADMIN_MODE === 'true' && (
+          {!published && process.env.NEXT_PUBLIC_ADMIN_MODE === "true" && (
             <span className="ml-2 bg-amber-100 dark:bg-amber-800 px-3 py-1 rounded-full text-sm text-amber-600 dark:text-amber-200">
               Entwurf
             </span>
@@ -110,7 +113,7 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
               // Handle image loading error
               console.warn(`Failed to load image: ${image}`);
               // Fallback to a default image
-              e.currentTarget.src = '/images/blog/default-cover.jpg';
+              e.currentTarget.src = "/images/blog/default-cover.jpg";
             }}
           />
         </div>

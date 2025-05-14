@@ -2,7 +2,7 @@ import React from "react";
 
 interface BlogCalloutProps {
   children?: React.ReactNode; // Make children optional
-  type?: "info" | "warning" | "error" | "success";
+  type?: "info" | "warning" | "success";
   className?: string;
 }
 
