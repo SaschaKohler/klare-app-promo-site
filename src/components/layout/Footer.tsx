@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -108,7 +108,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#features"
+                  href="/#features"
                   className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
                 >
                   Features
@@ -116,7 +116,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#methode"
+                  href="/#methode"
                   className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
                 >
                   KLARE Methode
@@ -124,7 +124,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#about"
+                  href="/#about"
                   className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
                 >
                   Über Uns
@@ -132,7 +132,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#faq"
+                  href="/#faq"
                   className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
                 >
                   FAQ
@@ -163,17 +163,17 @@ export default function Footer() {
                   Blog
                 </Link>
               </li>
+              {/* <li> */}
+              {/*   <a */}
+              {/*     href="#" */}
+              {/*     className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors" */}
+              {/*   > */}
+              {/*     Podcast */}
+              {/*   </a> */}
+              {/* </li> */}
               <li>
                 <a
-                  href="#"
-                  className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
-                >
-                  Podcast
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="mailto:klare-methode@sascha-kohler.at"
                   className="text-gray-600 dark:text-gray-300 hover:text-klare-k dark:hover:text-dark-klare-k transition-colors"
                 >
                   Kontakt
@@ -190,36 +190,36 @@ export default function Footer() {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Werde zum Experten für persönliche Transformation! Erfahre mehr
               über unsere Workshops, Seminare und Zertifizierungsprogramme zur
-              KLARE Methode.
+              KLARE Methode.Erfahre hier bald mehr!
             </p>
-            <a
-              href="https://sascha-kohler.at/schulungen"
-              className="inline-block px-4 py-2 bg-klare-k dark:bg-dark-klare-k text-white rounded-full hover:bg-klare-k/80 dark:hover:bg-dark-klare-k/80 transition-colors"
-            >
-              Zu den Schulungen
-            </a>
+            {/* <a */}
+            {/*   href="https://sascha-kohler.at/schulungen" */}
+            {/*   className="inline-block px-4 py-2 bg-klare-k dark:bg-dark-klare-k text-white rounded-full hover:bg-klare-k/80 dark:hover:bg-dark-klare-k/80 transition-colors" */}
+            {/* > */}
+            {/*   Zu den Schulungen */}
+            {/* </a> */}
           </div>
 
           {/* Newsletter */}
-          <div className="col-span-1 lg:col-span-4 mt-8">
-            <h3 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">
-              Bleib informiert
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4 max-w-xl">
-              Erhalte Updates über den Start der KLARE App und exklusive Inhalte
-              zur persönlichen Transformation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-xl">
-              <input
-                type="email"
-                placeholder="Deine E-Mail"
-                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md sm:rounded-l-md sm:rounded-r-none flex-grow focus:outline-none focus:ring-1 focus:ring-klare-k dark:focus:ring-dark-klare-k dark:text-white"
-              />
-              <button className="bg-klare-k dark:bg-dark-klare-k hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 text-white px-4 py-2 rounded-md sm:rounded-r-md sm:rounded-l-none transition-colors">
-                Anmelden
-              </button>
-            </div>
-          </div>
+          {/* <div className="col-span-1 lg:col-span-4 mt-8"> */}
+          {/*   <h3 className="text-lg font-bold mb-4 text-gray-800 dark:text-white"> */}
+          {/*     Bleib informiert */}
+          {/*   </h3> */}
+          {/*   <p className="text-gray-600 dark:text-gray-300 mb-4 max-w-xl"> */}
+          {/*     Erhalte Updates über den Start der KLARE App und exklusive Inhalte */}
+          {/*     zur persönlichen Transformation. */}
+          {/*   </p> */}
+          {/*   <div className="flex flex-col sm:flex-row gap-2 max-w-xl"> */}
+          {/*     <input */}
+          {/*       type="email" */}
+          {/*       placeholder="Deine E-Mail" */}
+          {/*       className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md sm:rounded-l-md sm:rounded-r-none flex-grow focus:outline-none focus:ring-1 focus:ring-klare-k dark:focus:ring-dark-klare-k dark:text-white" */}
+          {/*     /> */}
+          {/*     <button className="bg-klare-k dark:bg-dark-klare-k hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 text-white px-4 py-2 rounded-md sm:rounded-r-md sm:rounded-l-none transition-colors"> */}
+          {/*       Anmelden */}
+          {/*     </button> */}
+          {/*   </div> */}
+          {/* </div> */}
         </div>
 
         {/* Bottom Bar */}
@@ -253,4 +253,3 @@ export default function Footer() {
     </footer>
   );
 }
-

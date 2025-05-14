@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Link } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -27,10 +28,10 @@ export default function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button className="bg-klare-k text-white hover:bg-klare-k/90 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center">
-              Jetzt für Updates anmelden
+              <a href="/#call-to-action">Jetzt für Updates anmelden</a>
             </button>
             <button className="bg-transparent hover:bg-gray-100 border-2 border-klare-k text-klare-k py-3 px-6 rounded-full font-medium transition-all text-lg flex items-center justify-center">
-              Mehr erfahren
+              <a href="/blog">Mehr erfahren</a>
             </button>
           </div>
           <p className="mt-4 text-klare-text-secondary text-sm">
