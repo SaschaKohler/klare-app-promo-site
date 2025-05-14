@@ -54,7 +54,7 @@ export default function HeroSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src="/images/app-store-badges/google-play-badge-de.svg"
+                src="/images/app-store-badges/google_play_store_badge_en.svg"
                 width={120}
                 height={40}
                 alt="Im Google Play Store herunterladen"
@@ -112,4 +112,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
