@@ -33,7 +33,7 @@ const lifeAreas = [
 ];
 
 export default function LifeWheelPreviewSection() {
-  const [selectedArea, setSelectedArea] = useState(null);
+  const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

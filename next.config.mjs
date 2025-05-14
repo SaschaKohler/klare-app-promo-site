@@ -1,7 +1,12 @@
+// @ts-check
+import nextMDX from '@next/mdx';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // Aktiviere MDX-Dateierweiterungen
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
     domains: ['localhost'],
     // Füge weitere Domains hinzu, falls benötigt
@@ -11,4 +16,10 @@ const nextConfig = {
   output: 'standalone',
 };
 
-module.exports = nextConfig;
+const withMDX = nextMDX({
+  // Unterstütze sowohl .md als auch .mdx Dateien
+  extension: /\.(md|mdx)$/,
+});
+
+// Exportiere die Konfiguration
+export default withMDX(nextConfig);

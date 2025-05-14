@@ -1,10 +1,10 @@
 ---
-title: 'Das Lebensrad – Mein Herzstück der KLARE App'
-date: '2025-05-02'
-author: 'Sascha Kohler'
-excerpt: 'Das Lebensrad ist das zentrale Tool meiner KLARE Methode. Erfahre, warum dieses Feature für mich so besonders ist und wie ich es in der App umgesetzt habe.'
-category: 'Features'
-coverImage: '/images/blog/life-wheel.jpg'
+title: "Das Lebensrad – Mein Herzstück der KLARE App"
+date: "2025-05-02"
+author: "Sascha Kohler"
+excerpt: "Das Lebensrad ist das zentrale Tool meiner KLARE Methode. Erfahre, warum dieses Feature für mich so besonders ist und wie ich es in der App umgesetzt habe."
+category: "Features"
+coverImage: "/images/blog/life-wheel.jpg"
 ---
 
 # Das Lebensrad – Herzstück meiner KLARE App
@@ -26,21 +26,25 @@ In meiner KLARE App habe ich mich für folgende acht Lebensbereiche entschieden:
 7. **Freizeit & Erholung** - Entspannung, Hobbys und Freizeitgestaltung
 8. **Sinn & Spiritualität** - Verbindung zu einem größeren Ganzen, Lebenssinn
 
-<CalloutBox type="info">
+<BlogCallout type="info">
   <h3 className="text-lg font-bold mb-2">Warum gerade acht Bereiche?</h3>
   <p>
-    Aus meiner Erfahrung mit Klienten habe ich gelernt, dass acht Bereiche die optimale Balance zwischen Vollständigkeit und Übersichtlichkeit bieten. In meiner eigenen Transformationsreise habe ich mit verschiedenen Anzahlen experimentiert – weniger Bereiche waren zu grob, mehr wurden schnell unübersichtlich.
+    Aus meiner Erfahrung mit Klienten habe ich gelernt, dass acht Bereiche die
+    optimale Balance zwischen Vollständigkeit und Übersichtlichkeit bieten. In
+    meiner eigenen Transformationsreise habe ich mit verschiedenen Anzahlen
+    experimentiert – weniger Bereiche waren zu grob, mehr wurden schnell
+    unübersichtlich.
   </p>
-</CalloutBox>
+</BlogCallout>
 
 ## Meine technische Reise zur Umsetzung des Lebensrads
 
 Die Entwicklung eines intuitiven, visuell ansprechenden und technisch robusten Lebensrads war eine meiner größten Herausforderungen bei der App-Entwicklung. Als Einzelentwickler ohne Team musste ich verschiedene Lösungsansätze erkunden und testen. Schließlich entschied ich mich für eine vektorbasierte SVG-Implementation, die sowohl Performance als auch Flexibilität bietet.
 
-<CodeSnippet 
-  language="typescript" 
-  title="Core LifeWheel Component" 
-  code={`// LifeWheelSVG.tsx
+## LifeWheel SVG Component
+
+```typescript
+// LifeWheelSVG.tsx
 export const LifeWheelSVG: React.FC<LifeWheelProps> = ({
   areas,
   size = 300,
@@ -52,15 +56,15 @@ export const LifeWheelSVG: React.FC<LifeWheelProps> = ({
     const angle = (index / areas.length) * 2 * Math.PI;
     const currentValue = area.currentValue / 10; // Normalize to 0-1 range
     const targetValue = area.targetValue / 10;
-    
+
     // Calculate current value coordinates
     const currentX = size / 2 + Math.cos(angle) * (size / 2) * currentValue;
     const currentY = size / 2 + Math.sin(angle) * (size / 2) * currentValue;
-    
+
     // Calculate target value coordinates
     const targetX = size / 2 + Math.cos(angle) * (size / 2) * targetValue;
     const targetY = size / 2 + Math.sin(angle) * (size / 2) * targetValue;
-    
+
     return {
       ...area,
       angle,
@@ -84,24 +88,24 @@ export const LifeWheelSVG: React.FC<LifeWheelProps> = ({
           strokeDasharray="2 2"
         />
       ))}
-      
+
       {/* Current value polygon */}
       <polygon
-        points={segments.map(s => \`\${s.currentPoint.x},\${s.currentPoint.y}\`).join(' ')}
+        points={segments.map(s => `${s.currentPoint.x},${s.currentPoint.y}`).join(' ')}
         fill="rgba(25, 118, 210, 0.3)"
         stroke="#1976d2"
         strokeWidth="2"
       />
-      
+
       {/* Target value polygon */}
       <polygon
-        points={segments.map(s => \`\${s.targetPoint.x},\${s.targetPoint.y}\`).join(' ')}
+        points={segments.map(s => `${s.targetPoint.x},${s.targetPoint.y}`).join(' ')}
         fill="none"
         stroke="#f50057"
         strokeWidth="2"
         strokeDasharray="5 3"
       />
-      
+
       {/* Spokes */}
       {segments.map(segment => (
         <line
@@ -114,7 +118,7 @@ export const LifeWheelSVG: React.FC<LifeWheelProps> = ({
           strokeWidth="1"
         />
       ))}
-      
+
       {/* Interactive area points */}
       {segments.map(segment => (
         <g key={segment.id}>
@@ -130,8 +134,8 @@ export const LifeWheelSVG: React.FC<LifeWheelProps> = ({
       ))}
     </svg>
   );
-};`} 
-/>
+};
+```
 
 ## Das Lebensrad als Diagnose-Tool in meiner Methode
 
@@ -148,12 +152,18 @@ Diese beiden Werte visualisieren:
 2. Deine Zielvorstellung (rote Umrandung)
 3. Die Diskrepanz zwischen Ist und Soll (Abstand zwischen den Linien)
 
-<GradientBox from="from-klare-k" to="to-klare-l">
-  <h3 className="text-xl font-bold mb-4">Meine Erkenntnis zur Bedeutung der Diskrepanz</h3>
+<BlogGradientBox from="from-klare-k" to="to-klare-l">
+  <h3 className="text-xl font-bold mb-4">
+    Meine Erkenntnis zur Bedeutung der Diskrepanz
+  </h3>
   <p>
-    In meiner eigenen Transformationsreise und in der Arbeit mit Klienten habe ich erkannt: Die Diskrepanz zwischen Ist und Soll zeigt nicht nur, wo Entwicklungspotenzial besteht, sondern auch, wo innere Motivation für Veränderung vorhanden ist. Je größer die Diskrepanz, desto stärker der innere Antrieb zur Transformation in diesem Bereich.
+    In meiner eigenen Transformationsreise und in der Arbeit mit Klienten habe
+    ich erkannt: Die Diskrepanz zwischen Ist und Soll zeigt nicht nur, wo
+    Entwicklungspotenzial besteht, sondern auch, wo innere Motivation für
+    Veränderung vorhanden ist. Je größer die Diskrepanz, desto stärker der
+    innere Antrieb zur Transformation in diesem Bereich.
   </p>
-</GradientBox>
+</BlogGradientBox>
 
 ## Dynamische Entwicklung über Zeit – meine Vision
 
@@ -162,7 +172,7 @@ Eine Besonderheit meines Lebensrad-Features ist die Möglichkeit, die Entwicklun
 Durch regelmäßige Bewertungen entsteht eine Zeitleiste der persönlichen Entwicklung, die folgende Einsichten ermöglicht:
 
 - Identifikation von Fortschritten in allen Lebensbereichen
-- Erkennen von Wechselwirkungen zwischen verschiedenen Bereichen 
+- Erkennen von Wechselwirkungen zwischen verschiedenen Bereichen
 - Bewusstsein für die natürlichen Schwankungen im Leben
 - Muster in der persönlichen Entwicklung
 
@@ -181,14 +191,16 @@ Bei der Konzeption meiner App war es mir wichtig, dass alle Features zusammenwir
 3. **Ressourcen-Bibliothek**: Kraftquellen und Werkzeuge werden für jeden Lebensbereich kategorisiert.
 4. **Ziele und Gewohnheiten**: Konkrete Handlungsschritte zur Verbesserung einzelner Bereiche.
 
-<FeatureList items={[
-  "Intuitive Touch-Steuerung zur direkten Anpassung der Werte",
-  "Automatische Speicherung der Bewertungshistorie",
-  "Detaillierte Bereichs-Beschreibungen mit Reflexionsfragen",
-  "Export-Funktion für Coaching-Sessions",
-  "Reminder für regelmäßige Neubewertungen",
-  "KI-gestützte Musteranalyse und Empfehlungen"
-]} />
+<BlogFeatureList
+  items={[
+    "Intuitive Touch-Steuerung zur direkten Anpassung der Werte",
+    "Automatische Speicherung der Bewertungshistorie",
+    "Detaillierte Bereichs-Beschreibungen mit Reflexionsfragen",
+    "Export-Funktion für Coaching-Sessions",
+    "Reminder für regelmäßige Neubewertungen",
+    "KI-gestützte Musteranalyse und Empfehlungen",
+  ]}
+/>
 
 ## Technische Herausforderungen und meine Lösungen
 
@@ -228,4 +240,5 @@ Das Lebensrad ist für mich mehr als nur ein Feature – es ist das zentrale Nav
 
 Ich habe das Lebensrad schon mit vielen Menschen in Coaching-Sessions und Workshops genutzt, lange bevor die App entstand. Die digitale Version ist nun sozusagen mein "Coach in der Tasche" geworden. Ich bin gespannt, wie du das Lebensrad in der KLARE App erleben wirst und freue mich auf dein Feedback!
 
-*Sascha*
+_Sascha_
+

@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
 // Define the blog post metadata type
 export interface BlogPost {
@@ -13,31 +13,32 @@ export interface BlogPost {
   coverImage: string;
   content: string;
   readingTime: string;
+  published: boolean; // Neue Property
 }
 
-const BLOG_DIRECTORY = path.join(process.cwd(), 'content/blog');
+const BLOG_DIRECTORY = path.join(process.cwd(), "content/blog");
 
 // Function to get all blog posts sorted by date
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
+export async function getAllBlogPosts(includeUnpublished = false): Promise<BlogPost[]> {
   // Get all markdown files from the blog directory
   const fileNames = fs.readdirSync(BLOG_DIRECTORY);
-  
+
   const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx'))
-    .map(fileName => {
+    .filter((fileName) => fileName.endsWith(".md") || fileName.endsWith(".mdx"))
+    .map((fileName) => {
       // Remove file extension to get the slug
-      const slug = fileName.replace(/\.mdx?$/, '');
-      
+      const slug = fileName.replace(/\.mdx?$/, "");
+
       // Read markdown file as string
       const fullPath = path.join(BLOG_DIRECTORY, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+
       // Use gray-matter to parse the post metadata
       const { data, content } = matter(fileContents);
-      
+
       // Calculate reading time (rough estimate)
       const readingTime = calculateReadingTime(content);
-      
+
       // Combine the data with the slug and reading time
       return {
         slug,
@@ -48,10 +49,13 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
         category: data.category,
         coverImage: data.coverImage,
         content: content,
-        readingTime: readingTime
+        readingTime: readingTime,
+        published: data.published !== undefined ? data.published : true, // Default zu true, falls nicht definiert
       } as BlogPost;
-    });
-  
+    })
+    // Filter unpublished posts unless explicitly requested
+    .filter(post => includeUnpublished || post.published);
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (new Date(a.date) < new Date(b.date)) {
@@ -63,7 +67,9 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 }
 
 // Function to get a specific blog post by slug
-export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export async function getBlogPostBySlug(
+  slug: string,
+): Promise<BlogPost | null> {
   try {
     // Look for both .md and .mdx extensions
     let filePath = path.join(BLOG_DIRECTORY, `${slug}.md`);
@@ -73,16 +79,27 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
         return null;
       }
     }
-    
+
     // Read markdown file as string
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    
+    const fileContents = fs.readFileSync(filePath, "utf8");
+
     // Use gray-matter to parse the post metadata
     const { data, content } = matter(fileContents);
-    
+
+    // Detailed frontmatter logging by slug
+    console.log(`Frontmatter for ${slug}:`, {
+      title: data.title,
+      date: data.date,
+      excerpt: data.excerpt,
+      author: data.author,
+      category: data.category,
+      coverImage: data.coverImage,
+      published: data.published !== undefined ? data.published : true
+    });
+
     // Calculate reading time
     const readingTime = calculateReadingTime(content);
-    
+
     // Combine the data with the slug
     return {
       slug,
@@ -93,14 +110,23 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       category: data.category,
       coverImage: data.coverImage,
       content: content,
-      readingTime: readingTime
+      readingTime: readingTime,
+      published: data.published !== undefined ? data.published : true, // Default zu true, falls nicht definiert
     } as BlogPost;
   } catch (error) {
     console.error(`Error getting blog post by slug ${slug}:`, error);
     return null;
   }
 }
-
+// Format date to locale string
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("de-AT", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 // Function to calculate reading time
 function calculateReadingTime(content: string): string {
   const wordsPerMinute = 200;

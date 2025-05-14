@@ -53,7 +53,7 @@ const klarePrinciples = [
 ];
 
 export default function KlarePrinciplesSection() {
-  const [activePrinciple, setActivePrinciple] = useState(null);
+  const [activePrinciple, setActivePrinciple] = useState<number | null>(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

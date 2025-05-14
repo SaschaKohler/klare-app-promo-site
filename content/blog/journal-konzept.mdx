@@ -1,10 +1,10 @@
 ---
-title: 'Journal-Feature: Kongruenz im Alltag reflektieren'
-date: '2025-04-15'
-author: 'Sascha Kohler'
-excerpt: 'Das Journal-Feature ist einer meiner persönlichen Favoriten in der KLARE App. Hier erzähle ich, wie es dir dabei hilft, Kongruenzmomente in deinem Alltag zu erkennen und zu reflektieren.'
-category: 'Features'
-coverImage: '/images/blog/journal.jpg'
+title: "Journal-Feature: Kongruenz im Alltag reflektieren"
+date: "2025-04-15"
+author: "Sascha Kohler"
+excerpt: "Das Journal-Feature ist einer meiner persönlichen Favoriten in der KLARE App. Hier erzähle ich, wie es dir dabei hilft, Kongruenzmomente in deinem Alltag zu erkennen und zu reflektieren."
+category: "Features"
+coverImage: "/images/blog/journal.jpg"
 ---
 
 Die Kongruenz-Arbeit ist ein kontinuierlicher Prozess, der im Alltag gelebt werden will. Um diesen Prozess zu unterstützen, habe ich in der KLARE App das Journal-Feature entwickelt – ein digitales Tagebuch, das dir hilft, Kongruenzmomente zu erkennen, zu reflektieren und zu verstärken.
@@ -29,29 +29,28 @@ Die regelmäßige Dokumentation von Kongruenzmomenten hilft dabei:
 
 Bei der Entwicklung des Journal-Features haben wir besonderen Wert auf Benutzerfreundlichkeit und Tiefe gelegt. Es soll einfach genug sein, um täglich genutzt zu werden, aber tiefgründig genug, um echte Transformation zu unterstützen.
 
-<FeatureList items={[
-  "Check-ins: Kurze, tägliche Einträge mit Kongruenz-Bewertung",
-  "Reflexionen: Tiefergehende Einträge mit geführten Fragen",
-  "Kongruenz-Momente: Dokumentation besonderer Momente voller Kongruenz",
-  "Inkongruenz-Trigger: Identifikation von Situationen, die Inkongruenz auslösen",
-  "Ressourcen-Bibliothek: Sammlung persönlicher Kraftquellen",
-  "Fortschritts-Tracking: Visualisierung der Kongruenz-Entwicklung über Zeit"
-]} />
+<FeatureList
+  items={[
+    "Check-ins: Kurze, tägliche Einträge mit Kongruenz-Bewertung",
+    "Reflexionen: Tiefergehende Einträge mit geführten Fragen",
+    "Kongruenz-Momente: Dokumentation besonderer Momente voller Kongruenz",
+    "Inkongruenz-Trigger: Identifikation von Situationen, die Inkongruenz auslösen",
+    "Ressourcen-Bibliothek: Sammlung persönlicher Kraftquellen",
+    "Fortschritts-Tracking: Visualisierung der Kongruenz-Entwicklung über Zeit",
+  ]}
+/>
 
 ## Das technische Konzept
 
 Als ich die technische Umsetzung des Journal-Features plante, war es mir wichtig, ein flexibles Datenmodell zu schaffen, das verschiedene Eintragstypen unterstützt und gleichzeitig eine einfache Analyse ermöglicht.
 
-<CodeSnippet 
-  language="typescript" 
-  title="Journal-Datenmodell" 
-  code={`// JournalTypes.ts
-export type JournalEntryType = 
-  | 'check-in'
-  | 'reflection'
-  | 'kongruenz-moment'
-  | 'inkongruenz-trigger'
-  | 'resource';
+```typescript
+export type JournalEntryType =
+  | "check-in"
+  | "reflection"
+  | "kongruenz-moment"
+  | "inkongruenz-trigger"
+  | "resource";
 
 export interface JournalEntry {
   id: string;
@@ -64,8 +63,8 @@ export interface JournalEntry {
   relatedLifeWheelAreas?: string[];
   location?: string;
   images?: string[];
-}`} 
-/>
+}
+```
 
 Besonders stolz bin ich auf die Verbindung zwischen dem Journal und anderen Features der KLARE App:
 
@@ -90,7 +89,11 @@ Die Journal-Oberfläche bietet:
 <GradientBox>
   <h3 className="text-xl font-bold mb-4">Die Kraft regelmäßiger Reflexion</h3>
   <p className="mb-0">
-    Aus meiner eigenen Erfahrung und unterstützt durch zahlreiche Studien weiß ich, dass regelmäßige Selbstreflexion zu erhöhtem Wohlbefinden, besserer Selbsterkenntnis und nachhaltigeren Verhaltensänderungen führt. Das Journal-Feature der KLARE App macht diese kraftvolle Praxis einfach und zugänglich.
+    Aus meiner eigenen Erfahrung und unterstützt durch zahlreiche Studien weiß
+    ich, dass regelmäßige Selbstreflexion zu erhöhtem Wohlbefinden, besserer
+    Selbsterkenntnis und nachhaltigeren Verhaltensänderungen führt. Das
+    Journal-Feature der KLARE App macht diese kraftvolle Praxis einfach und
+    zugänglich.
   </p>
 </GradientBox>
 
@@ -119,3 +122,4 @@ Für zukünftige Versionen der App plane ich weitere Verbesserungen des Journal-
 Das Journal-Feature ist mehr als nur ein digitales Tagebuch – es ist ein leistungsstarker Begleiter auf dem Weg zu mehr Kongruenz im Leben. Durch die regelmäßige Reflexion werden Muster erkannt, Ressourcen gestärkt und Transformation nachhaltig verankert.
 
 Ich freue mich darauf, dich auf diesem Weg zu begleiten und bin gespannt auf dein Feedback, wenn du das Journal-Feature selbst ausprobierst.
+

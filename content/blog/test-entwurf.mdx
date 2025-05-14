@@ -1,0 +1,46 @@
+---
+title: "Test-Entwurf: Nicht veröffentlicht"
+date: "2025-05-20"
+author: "Sascha Kohler"
+excerpt: "Dies ist ein Test-Beitrag, der zeigt, wie nicht veröffentlichte Beiträge gekennzeichnet werden."
+category: "Test"
+coverImage: "/images/blog/me.jpeg"
+published: false
+---
+
+# Test-Entwurf Beitrag
+
+Dieser Beitrag ist als **Entwurf** markiert und sollte nur im **Admin-Modus** sichtbar sein.
+
+## Was ist der published-Status?
+
+Der `published`-Status im Frontmatter ermöglicht es dir, Entwürfe zu schreiben und zu speichern, ohne sie sofort für alle Besucher sichtbar zu machen. Dies ist nützlich, wenn:
+
+- Du an einem Beitrag noch arbeitest
+- Du den Beitrag erst zu einem späteren Zeitpunkt veröffentlichen möchtest
+- Du einen Beitrag vorab mit bestimmten Personen teilen möchtest
+
+## Wie funktioniert es?
+
+In der Frontmatter-Sektion eines Markdown/MDX-Dokuments kannst du `published: false` hinzufügen:
+
+```yaml
+---
+title: "Mein Beitrag"
+date: "2025-05-20"
+published: false
+---
+```
+
+Wenn dieser Wert auf `false` gesetzt ist, wird der Beitrag standardmäßig nicht angezeigt. Nur wenn der Admin-Modus aktiviert ist (durch Setzen von `NEXT_PUBLIC_ADMIN_MODE=true` in der .env.local-Datei), werden nicht veröffentlichte Beiträge mit einem "Entwurf"-Badge angezeigt.
+
+## Nutzen für den Workflow
+
+Diese Funktion verbessert deinen Content-Erstellungsprozess:
+
+1. Erstelle Entwürfe, ohne sie sofort zu veröffentlichen
+2. Arbeite an mehreren Beiträgen gleichzeitig
+3. Plane Veröffentlichungen im Voraus
+4. Teste Beiträge im Admin-Modus, bevor sie öffentlich werden
+
+Sobald ein Beitrag fertig ist und veröffentlicht werden soll, ändere einfach den Wert auf `published: true` oder entferne die Property komplett, da `true` der Standardwert ist.
