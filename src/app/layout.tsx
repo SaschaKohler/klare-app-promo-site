@@ -2,13 +2,64 @@ import './globals.css';
 import { Inter, Montserrat } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { defaultSEO, siteConfig } from '@/lib/seo/config';
+import GlobalSchema from '@/components/seo/GlobalSchema';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export const metadata = {
-  title: 'KLARE Methode App | Kongruenz statt Optimierung',
-  description: 'Entdecke die KLARE Methode App: In 5 Schritten zur vollständigen Kongruenz. Klarheit, Lebendigkeit, Ausrichtung, Realisierung, Entfaltung - Von Sascha Kohler',
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: defaultSEO.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: defaultSEO.description,
+  keywords: siteConfig.mainKeywords,
+  authors: [{ name: siteConfig.orgName }],
+  creator: siteConfig.orgName,
+  publisher: siteConfig.orgName,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'de-DE': '/de',
+      'en-US': '/en',
+    },
+  },
+  openGraph: {
+    ...defaultSEO.openGraph,
+  },
+  twitter: {
+    ...defaultSEO.twitter,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  verification: {
+    // Fill these in when you have the verification codes
+    google: 'google-site-verification-code',
+    // yandex: 'yandex verification code',
+    // bing: 'bing verification code',
+  },
 };
 
 export default function RootLayout({
@@ -19,6 +70,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${inter.variable} ${montserrat.variable} dark`}>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
+        <GlobalSchema />
         <Header />
         {children}
         <Footer />
