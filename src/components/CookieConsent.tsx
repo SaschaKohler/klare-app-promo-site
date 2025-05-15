@@ -64,7 +64,7 @@ export default function CookieConsent() {
               link: "Mehr erfahren",
               href: "/datenschutz", // Link to your privacy policy
             },
-            onStatusChange: function (status) {
+            onStatusChange: function (status: string) {
               if (status === "dismiss" || status === "allow") {
                 setConsentGiven(true);
                 localStorage.setItem("cookieconsent_status", status);
