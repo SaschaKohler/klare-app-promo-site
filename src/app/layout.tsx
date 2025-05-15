@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { defaultSEO, siteConfig } from '@/lib/seo/config';
 import GlobalSchema from '@/components/seo/GlobalSchema';
+import CookieConsent from '@/components/CookieConsent';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
@@ -50,7 +51,10 @@ export const metadata = {
   },
   manifest: '/site.webmanifest',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
@@ -71,6 +75,7 @@ export default function RootLayout({
     <html lang="de" className={`${inter.variable} ${montserrat.variable} dark`}>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
         <GlobalSchema />
+        <CookieConsent />
         <Header />
         {children}
         <Footer />

@@ -165,15 +165,19 @@ export default async function BlogPage() {
               den Ersten, die von neuen Features erfahren und exklusive
               Einblicke erhalten.
             </p>
-            <div className="flex flex-col sm:flex-row max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Deine E-Mail-Adresse"
-                className="px-5 py-3 rounded-full sm:rounded-r-none w-full mb-4 sm:mb-0 bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-              <button className="bg-white text-klare-k dark:text-dark-klare-k px-6 py-3 rounded-full sm:rounded-l-none font-medium hover:bg-white/90 transition-colors whitespace-nowrap">
-                Abonnieren
-              </button>
+            <div className="flex flex-row justify-center sm:flex-row max-w-md mx-auto">
+              {/* <input */}
+              {/*   type="email" */}
+              {/*   placeholder="Deine E-Mail-Adresse" */}
+              {/*   className="px-5 py-3 rounded-full sm:rounded-r-none w-full mb-4 sm:mb-0 bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" */}
+              {/* /> */}
+              <Link href="/#call-to-action">
+                {/* <button className="bg-white text-klare-k dark:text-dark-klare-k px-6 py-3 rounded-full sm:rounded-l-none font-medium hover:bg-white/90 transition-colors whitespace-nowrap"> */}
+                {/* <button className="py-2 px-5 rounded-full font-medium bg-white dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 transition-all"> */}
+                <button className="whitespace-nowrap bg-white text-klare-k hover:bg-gray-100 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center gap-2 disabled:opacity-70">
+                  Updates erhalten
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -184,6 +188,13 @@ export default async function BlogPage() {
             <div className="md:col-span-1 relative h-full min-h-[280px] md:min-h-full bg-gradient-to-br from-klare-k to-klare-a flex items-center justify-center p-8">
               <div className="bg-white/10 w-48 h-48 rounded-full overflow-hidden mx-auto relative">
                 {/* Hier kannst du ein Bild einfügen */}
+                <Image
+                  src="/images/blog/sascha.png "
+                  alt="Sascha Kohler - KLARE"
+                  fill
+                  className="object-cover"
+                  priority
+                />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-6xl font-bold text-white">SK</span>
                 </div>

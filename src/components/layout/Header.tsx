@@ -111,15 +111,17 @@ export default function Header() {
             >
               Blog
             </Link>
-            <button
-              className={`py-2 px-5 rounded-full font-medium transition-all ${
-                isScrolled
-                  ? "bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90"
-                  : "bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90"
-              }`}
-            >
-              Updates erhalten
-            </button>
+            <Link href="/#call-to-action">
+              <button
+                className={`py-2 px-5 rounded-full font-medium transition-all ${
+                  isScrolled
+                    ? "bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90"
+                    : "bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90"
+                }`}
+              >
+                Updates erhalten
+              </button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -192,9 +194,14 @@ export default function Header() {
             >
               Blog
             </Link>
-            <button className="py-2 px-5 rounded-full font-medium bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 transition-all">
-              Updates erhalten
-            </button>
+            <Link
+              href="/#call-to-action"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <button className="py-2 px-5 rounded-full font-medium bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 transition-all">
+                Updates erhalten
+              </button>
+            </Link>
           </div>
         </motion.div>
       )}

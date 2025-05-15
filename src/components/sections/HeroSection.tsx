@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -27,12 +27,16 @@ export default function HeroSection() {
             begleitet Dich auf Deinem Weg.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-klare-k text-white hover:bg-klare-k/90 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center">
-              <a href="/#call-to-action">Jetzt für Updates anmelden</a>
-            </button>
-            <button className="bg-transparent hover:bg-gray-100 border-2 border-klare-k text-klare-k py-3 px-6 rounded-full font-medium transition-all text-lg flex items-center justify-center">
-              <a href="/blog">Mehr erfahren</a>
-            </button>
+            <Link href="/#call-to-action">
+              <button className="bg-klare-k text-white hover:bg-klare-k/90 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center">
+                Jetzt für Updates anmelden
+              </button>
+            </Link>
+            <Link href="/blog">
+              <button className="bg-transparent hover:bg-gray-100 border-2 border-klare-k text-klare-k py-3 px-6 rounded-full font-medium transition-all text-lg flex items-center justify-center">
+                Mehr erfahren
+              </button>
+            </Link>
           </div>
           <p className="mt-4 text-klare-text-secondary text-sm">
             App-Launch: Herbst 2025
