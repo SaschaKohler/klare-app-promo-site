@@ -83,7 +83,7 @@ export default function CookieConsent() {
       {consentGiven && (
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" // Replace GTM-XXXXXXX with your actual GTM ID
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WVVS7S7W" // Replace GTM-XXXXXXX with your actual GTM ID
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
