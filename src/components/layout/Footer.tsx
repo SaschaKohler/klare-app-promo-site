@@ -60,8 +60,8 @@ export default function Footer() {
                 Sascha Kohler
               </h4>
               <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                Lebens- und Sozialberater i.A., NLP-Master &
-                Trainer,Mentaltrainer, Entwickler der KLARE Methode
+                Lebens- und Sozialberater i.A., NLP-Master & Trainer,
+                Mentaltrainer, Entwickler der KLARE Methode
               </p>
             </div>
             <div className="flex space-x-4">
@@ -190,7 +190,7 @@ export default function Footer() {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Werde zum Experten für persönliche Transformation! Erfahre mehr
               über unsere Workshops, Seminare und Zertifizierungsprogramme zur
-              KLARE Methode.Erfahre hier bald mehr!
+              KLARE Methode. Erfahre hier bald mehr!
             </p>
             {/* <a */}
             {/*   href="https://sascha-kohler.at/schulungen" */}
