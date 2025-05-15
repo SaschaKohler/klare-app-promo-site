@@ -38,6 +38,7 @@ export default function Header() {
                 height={36}
                 alt="K"
                 className="w-9 h-9"
+                priority
               />
               <Image
                 src="/klare-svg/L-circle.svg"
@@ -45,6 +46,7 @@ export default function Header() {
                 height={36}
                 alt="L"
                 className="w-9 h-9"
+                priority
               />
               <Image
                 src="/klare-svg/A-circle.svg"
@@ -52,6 +54,7 @@ export default function Header() {
                 height={36}
                 alt="A"
                 className="w-9 h-9"
+                priority
               />
               <Image
                 src="/klare-svg/R-circle.svg"
@@ -59,6 +62,7 @@ export default function Header() {
                 height={36}
                 alt="R"
                 className="w-9 h-9"
+                priority
               />
               <Image
                 src="/klare-svg/E-circle.svg"
@@ -66,6 +70,7 @@ export default function Header() {
                 height={36}
                 alt="E"
                 className="w-9 h-9"
+                priority
               />
               <span className="ml-2 text-xl font-bold dark:text-white">
                 App

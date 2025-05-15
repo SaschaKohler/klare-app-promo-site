@@ -13,10 +13,16 @@ RUN npm ci
 
 # Build-Stage
 FROM dependencies AS builder
+# Sharp für bessere Image-Optimierung
+RUN npm install --platform=linux --arch=x64 sharp
+
 # Kopiere alle Dateien der Anwendung
 COPY . .
 # .env.local wird normalerweise nicht im Repository gespeichert, aber falls nötig
 # COPY .env.local ./
+
+# Build mit erhöhtem Arbeitsspeicher für bessere Image-Verarbeitung
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 RUN npm run build
 
 # Produktions-Stage
@@ -33,6 +39,10 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+
+# Kopiere die .env.local Datei für Umgebungsvariablen (nur für lokales Testing)
+# Für Produktion sollten Umgebungsvariablen über Kubernetes bereitgestellt werden
+# COPY --from=builder /app/.env.local ./
 
 # Setze die Berechtigungen für den nicht-root Benutzer
 RUN chown -R nextjs:nodejs /app

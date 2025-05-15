@@ -161,7 +161,10 @@ export default function RealAppShowcaseSection() {
                         alt={screenshot.name}
                         fill
                         className="object-cover"
-                        priority={index === 0}
+                        priority={index <= 1} // Erste zwei Bilder priorisieren
+                        sizes="(max-width: 768px) 80vw, 300px"
+                        quality={index === activeIndex ? 85 : 60} // Aktives Bild in höherer Qualität
+                        loading={index <= 1 ? "eager" : "lazy"}
                       />
                     </motion.div>
                   );

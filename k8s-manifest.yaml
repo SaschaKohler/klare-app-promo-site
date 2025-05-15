@@ -24,37 +24,47 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          # Wenn es Umgebungsvariablen gibt, können diese hier hinzugefügt werden
-          # env:
-          # - name: NEXT_PUBLIC_MAKE_WEBHOOK_URL
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: klare-app-secrets
-          #       key: NEXT_PUBLIC_MAKE_WEBHOOK_URL
+          # Environment variables
+          env:
+            - name: NEXT_PUBLIC_MAKE_WEBHOOK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: klare-app-secrets
+                  key: NEXT_PUBLIC_MAKE_WEBHOOK_URL
+            - name: NEXT_PUBLIC_ADMIN_MODE
+              value: "false"
           resources:
             requests:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "100m"
             limits:
-              memory: "256Mi"
-              cpu: "200m"
+              memory: "512Mi"
+              cpu: "300m"
           readinessProbe:
             httpGet:
               path: /
               port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 15
 ---
-# Falls Secrets benötigt werden, würde man sie hier definieren
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: klare-app-secrets
-#   namespace: klare-methode-app
-# type: Opaque
-# data:
-#   # echo -n "https://api.example.com" | base64
-#   NEXT_PUBLIC_MAKE_WEBHOOK_URL: aHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20=
+apiVersion: v1
+kind: Secret
+metadata:
+  name: klare-app-secrets
+  namespace: klare-methode-app
+type: Opaque
+data:
+  # Base64 encoded value of the webhook URL from .env.local
+  NEXT_PUBLIC_MAKE_WEBHOOK_URL: aHR0cHM6Ly9ob29rLmV1Mi5tYWtlLmNvbS9jcGNmZTg4bTFjNjU3cjdxczNvc2pkZmtwOTduZm5ubw==
 ---
 apiVersion: v1
 kind: Service
@@ -77,6 +87,25 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      expires $expires;
+      proxy_cache_valid 200 302 7d;
+      proxy_cache_valid 404 1m;
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg)$ {
+        expires 7d;
+        add_header Cache-Control "public, no-transform";
+      }
+      location /_next/image {
+        expires 7d;
+        add_header Cache-Control "public, no-transform";
+      }
+      location /_next/static {
+        expires 7d;
+        add_header Cache-Control "public, no-transform";
+      }
 spec:
   ingressClassName: nginx
   tls:
