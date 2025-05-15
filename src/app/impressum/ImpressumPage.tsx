@@ -1,7 +1,7 @@
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import { FileText, Shield, ExternalLink } from 'lucide-react';
+"use client";
+import React from "react";
+import Link from "next/link";
+import { FileText, Shield, ExternalLink } from "lucide-react";
 
 // Impressum Komponente
 const ImpressumPage: React.FC = () => {
@@ -20,12 +20,12 @@ const ImpressumPage: React.FC = () => {
         {/* KLARE Methode als dekorative Elemente im Hintergrund */}
         <div className="absolute inset-0 z-0 opacity-10 flex items-center justify-center overflow-hidden">
           <div className="flex space-x-6 sm:space-x-12 transform -rotate-12 scale-150">
-            {['K', 'L', 'A', 'R', 'E'].map((letter, index) => (
+            {["K", "L", "A", "R", "E"].map((letter, index) => (
               <div
                 key={index}
                 className="text-8xl sm:text-9xl font-bold text-white"
                 style={{
-                  textShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                  textShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 }}
               >
                 {letter}
@@ -42,7 +42,8 @@ const ImpressumPage: React.FC = () => {
           </h1>
 
           <p className="max-w-3xl text-white/90 text-lg relative z-10">
-            Gemäß § 5 ECG, § 25 MedienG und § 63 GewO - Gesetzlich erforderliche Angaben
+            Gemäß § 5 ECG, § 25 MedienG und § 63 GewO - Gesetzlich erforderliche
+            Angaben
           </p>
         </div>
       </header>
@@ -57,9 +58,7 @@ const ImpressumPage: React.FC = () => {
             <div className="space-y-3">
               <p className="font-medium">Sascha Kohler</p>
               <p>Furth 6</p>
-              <p>
-                4311 Schwertberg
-              </p>
+              <p>4311 Schwertberg</p>
               <p>Österreich</p>
             </div>
           </section>
@@ -69,12 +68,8 @@ const ImpressumPage: React.FC = () => {
               Kontakt
             </h2>
             <div className="space-y-2">
-              <p>
-                Telefon: +43 650 90 30 372
-              </p>
-              <p>
-                E-Mail: office@sascha-kohler.at
-              </p>
+              <p>Telefon: +43 650 90 30 372</p>
+              <p>E-Mail: office@sascha-kohler.at</p>
             </div>
           </section>
 
@@ -90,20 +85,22 @@ const ImpressumPage: React.FC = () => {
               </ul>
               <p>GISA: 37168483,37168445</p>
               <p className="mt-4">
-                Zusätzliche freie Gewerbe/neue Selbständige bzw. lfnd. Ausbildung:
+                Zusätzliche freie Gewerbe/neue Selbständige bzw. lfnd.
+                Ausbildung:
               </p>
               <ul className="list-disc pl-6 space-y-1">
                 <li>Trainer & Speaker</li>
                 <li>
-                  Lebens- und Sozialberater (in Ausbildung unter Supervision){' '}
+                  Lebens- und Sozialberater (in Ausbildung unter Supervision){" "}
                   <a
-                    href="https://www.rok-akademie.at"
+                    href="https://rokakademie.at"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-klare-k dark:text-dark-klare-k border-b border-klare-k dark:border-dark-klare-k transition-opacity hover:opacity-80"
                   >
-                    ROK-Akademie in Wien <ExternalLink size={16} className="ml-1" />
-                  </a>{' '}
+                    ROK-Akademie in Wien{" "}
+                    <ExternalLink size={16} className="ml-1" />
+                  </a>{" "}
                 </li>
               </ul>
               <p className="mt-4">
@@ -118,9 +115,7 @@ const ImpressumPage: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
               Aufsichtsbehörde/Gewerbebehörde
             </h2>
-            <p>
-              Bezirkshauptmannschaft Perg
-            </p>
+            <p>Bezirkshauptmannschaft Perg</p>
           </section>
 
           <section className="mb-8">
@@ -128,9 +123,10 @@ const ImpressumPage: React.FC = () => {
               Verbraucherstreitbeilegung
             </h2>
             <p>
-              Wir erkennen den Internet Ombudsmann als außergerichtliche Streitbeilegungsstelle an.
-              Bei Beschwerden wenden Sie sich bitte an: kontakt@sascha-kohler.at oder an die
-              Plattform zur Online-Streitbeilegung der Europäischen Kommission:
+              Wir erkennen den Internet Ombudsmann als außergerichtliche
+              Streitbeilegungsstelle an. Bei Beschwerden wenden Sie sich bitte
+              an: kontakt@sascha-kohler.at oder an die Plattform zur
+              Online-Streitbeilegung der Europäischen Kommission:
               <a
                 href="https://ec.europa.eu/consumers/odr"
                 target="_blank"
@@ -147,12 +143,15 @@ const ImpressumPage: React.FC = () => {
               Urheberrecht
             </h2>
             <p className="mb-3">
-              Die Inhalte dieser Website sind urheberrechtlich geschützt. Die Vervielfältigung,
-              Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-              Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw.
-              Erstellers.
+              Die Inhalte dieser Website sind urheberrechtlich geschützt. Die
+              Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
+              Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der
+              schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
             </p>
-            <p>© {new Date().getFullYear()} Sascha Kohler. Alle Rechte vorbehalten.</p>
+            <p>
+              © {new Date().getFullYear()} Sascha Kohler. Alle Rechte
+              vorbehalten.
+            </p>
           </section>
 
           <section>
@@ -160,9 +159,10 @@ const ImpressumPage: React.FC = () => {
               Haftungsausschluss
             </h2>
             <p className="mb-3">
-              Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte
-              externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren
-              Betreiber verantwortlich.
+              Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine
+              Haftung für die Inhalte externer Links. Für den Inhalt der
+              verlinkten Seiten sind ausschließlich deren Betreiber
+              verantwortlich.
             </p>
             <p>Alle Angaben sind ohne Gewähr.</p>
           </section>
