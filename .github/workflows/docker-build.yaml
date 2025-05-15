@@ -5,12 +5,12 @@ on:
     branches: [main]
     # Nur bestimmte Dateien auslösen
     paths:
-      - 'src/**'
-      - 'public/**'
-      - 'content/**'
-      - 'package*.json'
-      - 'Dockerfile'
-      - 'next.config.js'
+      - "src/**"
+      - "public/**"
+      - "content/**"
+      - "package*.json"
+      - "Dockerfile"
+      - "next.config.js"
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -63,19 +63,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup kubectl
+      - name: Set up kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: Setup kubeconfig
+      - name: Deploy using direct kubectl
+        env:
+          KUBE_SERVER: ${{ secrets.KUBE_SERVER }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-          chmod 600 $HOME/.kube/config
+          # Test connection
+          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+            get ns
 
-      - name: Deploy to k3s
-        run: |
-          # Rollout restart des Deployments im richtigen Namespace
-          kubectl rollout restart deployment/klare-app-promo-site -n klare-methode-app
+          # Rollout restart
+          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+            rollout restart deployment/klare-app-promo-site -n klare-methode-app
 
-          # Warte auf erfolgreichen Rollout
-          kubectl rollout status deployment/klare-app-promo-site -n klare-methode-app
+          # Check status
+          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+            rollout status deployment/klare-app-promo-site -n klare-methode-app
+
