@@ -71,15 +71,19 @@ jobs:
           KUBE_SERVER: ${{ secrets.KUBE_SERVER }}
           KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         run: |
-          # Test connection
-          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
-            get ns
-
-          # Rollout restart
-          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
-            rollout restart deployment/klare-app-promo-site -n klare-methode-app
-
-          # Check status
-          kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
-            rollout status deployment/klare-app-promo-site -n klare-methode-app
+          # Test connection with a command we have permission for
+            kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+              get pods -n klare-methode-app
+            
+            # Check if we have permission for deployments
+            kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+              get deployment klare-app-promo-site -n klare-methode-app
+            
+            # Rollout restart
+            kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+              rollout restart deployment/klare-app-promo-site -n klare-methode-app
+            
+            # Check status
+            kubectl --server="${KUBE_SERVER}" --token="${KUBE_TOKEN}" --insecure-skip-tls-verify=true \
+              rollout status deployment/klare-app-promo-site -n klare-methode-app
 
