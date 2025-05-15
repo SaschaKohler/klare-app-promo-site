@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Script from "next/script";
+import GoogleTagManager from "./analytics/GoogleTagManager";
 
 export default function CookieConsent() {
   const [mounted, setMounted] = useState(false);
@@ -22,23 +23,7 @@ export default function CookieConsent() {
   return (
     <>
       {/* Google Tag Manager - Only loads after consent */}
-      {consentGiven && (
-        <>
-          <Script
-            id="google-tag-manager"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                  })(window,document,'script','dataLayer','GTM-WVVS7S7W');</script>
-              `,
-            }}
-          />
-        </>
-      )}
+      {consentGiven && <GoogleTagManager id="GTM-WVVS7S7W" />}
 
       <Script
         id="cookie-consent-script"
@@ -78,18 +63,6 @@ export default function CookieConsent() {
         type="text/css"
         href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
       />
-
-      {/* Google Tag Manager NoScript (for browsers with JavaScript disabled) */}
-      {consentGiven && (
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WVVS7S7W" // Replace GTM-XXXXXXX with your actual GTM ID
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-      )}
     </>
   );
 }

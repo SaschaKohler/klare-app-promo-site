@@ -5,6 +5,8 @@ import Footer from '@/components/layout/Footer';
 import { defaultSEO, siteConfig } from '@/lib/seo/config';
 import GlobalSchema from '@/components/seo/GlobalSchema';
 import CookieConsent from '@/components/CookieConsent';
+import PageViewTracker from '@/components/analytics/PageViewTracker';
+import GoogleTagManagerDirect from '@/components/analytics/GoogleTagManagerDirect';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
@@ -73,12 +75,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" className={`${inter.variable} ${montserrat.variable} dark`}>
+      <head>
+        {/* Next.js will automatically insert metadata, etc. here */}
+      </head>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
         <GlobalSchema />
         <CookieConsent />
-        <Header />
-        {children}
-        <Footer />
+        <GoogleTagManagerDirect />
+        <PageViewTracker>
+          <Header />
+          {children}
+          <Footer />
+        </PageViewTracker>
       </body>
     </html>
   );
