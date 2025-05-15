@@ -3,12 +3,13 @@
 import { useEffect, ReactNode } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { trackPageView } from "@/lib/analytics/gtm";
+import SearchParamsWrapper from "@/components/utils/SearchParamsWrapper";
 
 interface PageViewTrackerProps {
   children: ReactNode;
 }
 
-const PageViewTracker = ({ children }: PageViewTrackerProps) => {
+const PageViewTrackerContent = ({ children }: PageViewTrackerProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -25,6 +26,14 @@ const PageViewTracker = ({ children }: PageViewTrackerProps) => {
   }, [pathname, searchParams]);
 
   return <>{children}</>;
+};
+
+const PageViewTracker = ({ children }: PageViewTrackerProps) => {
+  return (
+    <SearchParamsWrapper>
+      <PageViewTrackerContent>{children}</PageViewTrackerContent>
+    </SearchParamsWrapper>
+  );
 };
 
 export default PageViewTracker;

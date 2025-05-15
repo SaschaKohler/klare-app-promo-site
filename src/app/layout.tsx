@@ -7,6 +7,7 @@ import GlobalSchema from '@/components/seo/GlobalSchema';
 import CookieConsent from '@/components/CookieConsent';
 import PageViewTracker from '@/components/analytics/PageViewTracker';
 import GoogleTagManagerDirect from '@/components/analytics/GoogleTagManagerDirect';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
