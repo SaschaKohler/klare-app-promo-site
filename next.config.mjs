@@ -23,12 +23,7 @@ const nextConfig = {
   // Reduziere die Bundle-Größe
   poweredByHeader: false,
   // Verbessere Chunk-Loading und reduziere Client-Fehler
-  experimental: {
-    // Reduziert den Speicherverbrauch durch Optimierung der Server-Komponenten
-    serverComponentsExternalPackages: [],
-    // CSS-Optimierung auskommentiert, um Build-Fehler zu vermeiden
-    // optimizeCss: true,
-  },
+  experimental: {},
   // Verbessere Chunk-Loading
   webpack: (config, { dev, isServer }) => {
     // Optimiere Chunk-Splitting für bessere Performance
@@ -68,4 +63,3 @@ const withMDX = nextMDX({
 
 // Exportiere die Konfiguration
 export default withMDX(nextConfig);
-

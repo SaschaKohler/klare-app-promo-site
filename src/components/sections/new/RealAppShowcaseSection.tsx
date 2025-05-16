@@ -20,6 +20,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/welcome-screen.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
+      preload: true,
     },
     {
       id: "dashboard",
@@ -28,6 +29,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/home-dashboard.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
+      preload: true,
     },
     {
       id: "lifewheel",
@@ -36,6 +38,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/life-wheel.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
+      preload: false,
     },
     {
       id: "journal",
@@ -44,6 +47,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/journal-templates.png",
       color: "from-klare-r/30 to-klare-r/10",
       darkColor: "dark:from-dark-klare-r/40 dark:to-dark-klare-r/20",
+      preload: false,
     },
     {
       id: "resources",
@@ -52,6 +56,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/resources-library.png",
       color: "from-klare-e/30 to-klare-e/10",
       darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
+      preload: false,
     },
     {
       id: "klare-method",
@@ -60,6 +65,7 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/klare-k-module.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
+      preload: false,
     },
     {
       id: "vision-board",
@@ -68,11 +74,28 @@ export default function RealAppShowcaseSection() {
       image: "/images/app-screenshots-organized/vision-board.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
+      preload: false,
     },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+
+  // Dieses useEffect ist in Next.js nicht notwendig, da wir die Image-Komponente mit priority verwenden können
+  useEffect(() => {
+    // Next.js Image component übernimmt das Preloading automatisch für Bilder mit priority={true}
+    // Wir können bei Bedarf noch zusätzlich prefetching für bestimmte Pfade einrichten
+    
+    // Für fortgeschrittenes Preloading könnten wir NextJS Router oder eine spezielle API verwenden
+    // aber in diesem Fall ist das nicht nötig, da wir bereits priority für wichtige Bilder setzen
+    
+    // Die Funktion bleibt als Platzhalter für zukünftige Erweiterungen
+    const preloadNextImages = () => {
+      // Next.js übernimmt das Preloading automatisch
+    };
+    
+    preloadNextImages();
+  }, [activeIndex]);
 
   // Automatische Rotation der aktiven Screenshots
   useEffect(() => {
@@ -161,10 +184,12 @@ export default function RealAppShowcaseSection() {
                         alt={screenshot.name}
                         fill
                         className="object-cover"
-                        priority={index <= 1} // Erste zwei Bilder priorisieren
-                        sizes="(max-width: 768px) 80vw, 300px"
-                        quality={index === activeIndex ? 85 : 60} // Aktives Bild in höherer Qualität
-                        loading={index <= 1 ? "eager" : "lazy"}
+                        priority={screenshot.preload}
+                        sizes="(max-width: 768px) 240px, 280px"
+                        quality={index === activeIndex ? 85 : 40}
+                        loading={screenshot.preload ? "eager" : "lazy"}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                       />
                     </motion.div>
                   );

@@ -78,6 +78,20 @@ export default function RootLayout({
     <html lang="de" className={`${inter.variable} ${montserrat.variable} dark`}>
       <head>
         {/* Next.js will automatically insert metadata, etc. here */}
+        {/* Preload für kritische Bilder */}
+        <link 
+          rel="preload" 
+          href="/images/app-screenshots-organized/welcome-screen.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        <link 
+          rel="preload" 
+          href="/images/app-screenshots-organized/home-dashboard.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        {/* Fallback für Browser, die WebP nicht unterstützen */}
         <link 
           rel="preload" 
           href="/images/app-screenshots-organized/welcome-screen.png" 
