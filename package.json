@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run optimize-all && next build",
     "start": "next start",
     "lint": "next lint",
     "optimize-images": "node scripts/optimize-images.js",
-    "optimize-screenshots": "node scripts/optimize-app-screenshots.js"
+    "optimize-screenshots": "node scripts/optimize-app-screenshots.js",
+    "optimize-all": "npm run optimize-images && npm run optimize-screenshots"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",

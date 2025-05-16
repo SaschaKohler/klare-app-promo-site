@@ -193,6 +193,9 @@ export default async function BlogPage() {
                   alt="Sascha Kohler - KLARE"
                   fill
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                  sizes="(max-width: 768px) 96px, 192px"
                   priority
                 />
                 <div className="absolute inset-0 flex items-center justify-center">

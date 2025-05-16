@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FiInstagram, FiTwitter, FiYoutube, FiLinkedin } from "react-icons/fi";
+import KlareSvg from "../KlareSvg";
 
 export default function Footer() {
   return (
@@ -12,42 +13,12 @@ export default function Footer() {
           {/* Logo and Description */}
           <div>
             <div className="flex space-x-1 items-center mb-4">
-              <Image
-                src="/klare-svg/K-circle.svg"
-                width={28}
-                height={28}
-                alt="K"
-                className="w-7 h-7"
-              />
-              <Image
-                src="/klare-svg/L-circle.svg"
-                width={28}
-                height={28}
-                alt="L"
-                className="w-7 h-7"
-              />
-              <Image
-                src="/klare-svg/A-circle.svg"
-                width={28}
-                height={28}
-                alt="A"
-                className="w-7 h-7"
-              />
-              <Image
-                src="/klare-svg/R-circle.svg"
-                width={28}
-                height={28}
-                alt="R"
-                className="w-7 h-7"
-              />
-              <Image
-                src="/klare-svg/E-circle.svg"
-                width={28}
-                height={28}
-                alt="E"
-                className="w-7 h-7"
-              />
-              <span className="ml-2 text-lg font-bold dark:text-white">
+              <KlareSvg letter="K" className="w-7 h-7" />
+              <KlareSvg letter="L" className="w-7 h-7" />
+              <KlareSvg letter="A" className="w-7 h-7" />
+              <KlareSvg letter="R" className="w-7 h-7" />
+              <KlareSvg letter="E" className="w-7 h-7" />
+              <span className="ml-2 text-xl font-bold dark:text-white">
                 App
               </span>
             </div>

@@ -1,8 +1,8 @@
-"use client";
-
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useState, useEffect } from "react";
+import OptimizedAppScreenshot from "../ui/OptimizedAppScreenshot";
+import Image from "next/image";
 
 export default function AppShowcaseSection() {
   const [ref, inView] = useInView({

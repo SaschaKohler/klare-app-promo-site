@@ -26,7 +26,7 @@ interface BlogPostLayoutProps {
   readingTime?: string;
   category?: string;
   coverImage?: string; // Direct prop for cover image
-  published?: boolean;  // Veröffentlichungsstatus
+  published?: boolean; // Veröffentlichungsstatus
   mdxSource?: any; // Für next-mdx-remote
   children?: React.ReactNode; // Für @next/mdx
   relatedPosts?: Array<{
@@ -59,30 +59,32 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = (props) => {
     published,
   } = props;
   // Debug frontmatter with better object inspection
-  console.log(
-    "BlogPostLayout - frontmatter:",
-    frontmatter
-      ? {
-          title: frontmatter.title,
-          date: frontmatter.date,
-          excerpt: frontmatter.excerpt,
-          coverImage: frontmatter.coverImage,
-          published: frontmatter.published
-        }
-      : "undefined",
-  );
+  // console.log(
+  //   "BlogPostLayout - frontmatter:",
+  //   frontmatter
+  //     ? {
+  //         title: frontmatter.title,
+  //         date: frontmatter.date,
+  //         excerpt: frontmatter.excerpt,
+  //         coverImage: frontmatter.coverImage,
+  //         published: frontmatter.published
+  //       }
+  //     : "undefined",
+  // );
 
-  console.log("BlogPostLayout - direct props:", {
-    titleProp,
-    dateProp,
-    coverImage,
-  });
+  // console.log("BlogPostLayout - direct props:", {
+  //   titleProp,
+  //   dateProp,
+  //   coverImage,
+  // });
 
   // Get published status if available
-  const isPublished = 
-    props.published !== undefined ? props.published : 
-    frontmatter?.published !== undefined ? frontmatter?.published : 
-    true;
+  const isPublished =
+    props.published !== undefined
+      ? props.published
+      : frontmatter?.published !== undefined
+        ? frontmatter?.published
+        : true;
   const title = titleProp || frontmatter?.title || "";
   const date = dateProp || frontmatter?.date || "";
   const coverImagePath = coverImage || frontmatter?.coverImage;

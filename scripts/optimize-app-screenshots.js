@@ -12,6 +12,35 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
+// Größen für responsive Bilder
+const sizes = [
+  { width: 280, height: 580, suffix: 'small' },
+  { width: 380, height: 780, suffix: 'medium' }
+];
+
+async function generatePlaceholder(inputPath, outputPath) {
+  try {
+    await sharp(inputPath)
+      .resize(20) // Tiny placeholder
+      .blur(10)
+      .toBuffer()
+      .then(async (data) => {
+        // Convert to base64
+        const base64 = `data:image/png;base64,${data.toString('base64')}`;
+        // Write to a small JS file
+        fs.writeFileSync(
+          outputPath, 
+          `export default "${base64}";`
+        );
+      });
+    console.log(`  - Placeholder erstellt: ${outputPath}`);
+    return true;
+  } catch (error) {
+    console.error(`  - Fehler bei der Placeholder-Generierung für ${inputPath}:`, error);
+    return false;
+  }
+}
+
 async function optimizeAppScreenshots() {
   try {
     // Alle PNG-Dateien lesen
@@ -35,12 +64,49 @@ async function optimizeAppScreenshots() {
       }
       
       try {
-        // PNG optimieren
+        // Placeholder für Blur-Effekt generieren
+        const fileNameWithoutExt = path.basename(file, path.extname(file));
+        const placeholderPath = path.join(outputDir, `${fileNameWithoutExt}-placeholder.js`);
+        await generatePlaceholder(filePath, placeholderPath);
+        
+        // Responsive Versionen erstellen
+        for (const size of sizes) {
+          const resizedFileName = `${fileNameWithoutExt}-${size.suffix}${path.extname(file)}`;
+          const resizedFilePath = path.join(outputDir, resizedFileName);
+          
+          // PNG optimieren
+          await sharp(filePath)
+            .resize(size.width, size.height, { 
+              fit: 'contain',
+              background: { r: 0, g: 0, b: 0, alpha: 0 }
+            })
+            .png({ 
+              quality: 80,
+              compressionLevel: 9,
+              adaptiveFiltering: true,
+              palette: true
+            })
+            .toFile(resizedFilePath);
+          
+          console.log(`  - Responsive Version erstellt: ${resizedFileName}`);
+          
+          // WebP-Version
+          await sharp(resizedFilePath)
+            .webp({ quality: 75 })
+            .toFile(path.join(outputDir, resizedFileName.replace('.png', '.webp')));
+          
+          console.log(`  - WebP-Version erstellt: ${resizedFileName.replace('.png', '.webp')}`);
+          
+          // AVIF-Version
+          await sharp(resizedFilePath)
+            .avif({ quality: 70 })
+            .toFile(path.join(outputDir, resizedFileName.replace('.png', '.avif')));
+          
+          console.log(`  - AVIF-Version erstellt: ${resizedFileName.replace('.png', '.avif')}`);
+        }
+        
+        // Original PNG optimieren
         await sharp(filePath)
-          .resize(280, 580, { 
-            fit: 'contain',
-            background: { r: 0, g: 0, b: 0, alpha: 0 }
-          })
           .png({ 
             quality: 80,
             compressionLevel: 9,
@@ -59,12 +125,19 @@ async function optimizeAppScreenshots() {
         
         console.log(`  - Optimiert: ${newFileSizeInKb.toFixed(2)}KB (${savings.toFixed(2)}KB gespart, ${((savings/fileSizeInKb)*100).toFixed(2)}%)`);
         
-        // Auch WebP-Version erstellen für moderne Browser
+        // WebP und AVIF für das Original erstellen
         await sharp(filePath)
-          .webp({ quality: 80 })
+          .webp({ quality: 75 })
           .toFile(path.join(outputDir, file.replace('.png', '.webp')));
         
         console.log(`  - WebP-Version erstellt: ${file.replace('.png', '.webp')}`);
+        
+        await sharp(filePath)
+          .avif({ quality: 70 })
+          .toFile(path.join(outputDir, file.replace('.png', '.avif')));
+        
+        console.log(`  - AVIF-Version erstellt: ${file.replace('.png', '.avif')}`);
+        
       } catch (err) {
         console.error(`  - Fehler bei der Optimierung von ${file}:`, err);
       }

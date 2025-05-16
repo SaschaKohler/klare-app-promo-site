@@ -3,53 +3,57 @@ FROM node:20-alpine AS base
 # Arbeitsverzeichnis im Container setzen
 WORKDIR /app
 
-# Installiere Abhängigkeiten für scharfe Build-Performance
-RUN apk add --no-cache libc6-compat
+# Installiere Abhängigkeiten für bessere Performance
+RUN apk add --no-cache libc6-compat curl
 
-# Optimierung für npm ci und Caching
+# Abhängigkeiten-Stage
 FROM base AS dependencies
 COPY package.json package-lock.json ./
-# Nur Produktionsabhängigkeiten installieren für geringeren Speicherverbrauch
-# Wir müssen --include=dev nutzen, weil einige Build-Abhängigkeiten benötigt werden
+# Saubere Installation der Abhängigkeiten
 RUN npm ci --include=dev
 
 # Build-Stage
 FROM dependencies AS builder
-# Sharp für bessere Image-Optimierung
+# Sharp für bessere Image-Optimierung (Linux/x64 spezifisch)
 RUN npm install --platform=linux --arch=x64 sharp
 
-# Kopiere alle Dateien der Anwendung
+# Kopiere alle Quellcode-Dateien
 COPY . .
-# .env.local wird normalerweise nicht im Repository gespeichert, aber falls nötig
-# COPY .env.local ./
 
-# Build mit erhöhtem Arbeitsspeicher für bessere Image-Verarbeitung
+# Führe Bildoptimierungsskript explizit aus
+# RUN npm run optimize-all
+
+# Build mit erhöhtem Arbeitsspeicher 
 ENV NODE_OPTIONS="--max_old_space_size=4096"
 RUN npm run build
 
-# Produktions-Stage
-FROM base AS runner
+# Production-Stage - schlank und sicher
+FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
 
-# Erstelle einen nicht-root Benutzer für mehr Sicherheit
+# Erstelle einen Nicht-Root-Benutzer für Sicherheit
 RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+    adduser --system --uid 1001 nextjs && \
+    # Erstelle benötigte Verzeichnisse mit passenden Berechtigungen
+    mkdir -p /app/.next/cache/images && \
+    mkdir -p /tmp && \
+    # Setze Berechtigungen für wichtige Verzeichnisse
+    chown -R nextjs:nodejs /app && \
+    chown -R nextjs:nodejs /tmp
 
-# Kopiere das gebaute Projekt und die notwendigen Dateien
+# Kopiere nur die notwendigen Dateien
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Kopiere die .env.local Datei für Umgebungsvariablen (nur für lokales Testing)
-# Für Produktion sollten Umgebungsvariablen über Kubernetes bereitgestellt werden
-# COPY --from=builder /app/.env.local ./
-
-# Setze die Berechtigungen für den nicht-root Benutzer
-RUN chown -R nextjs:nodejs /app
-
+# Setze den Nicht-Root-Benutzer als aktiven Benutzer
 USER nextjs
+
+# Gesundheitscheck für Container-Orchestrierung
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000/ || exit 1
 
 EXPOSE 3000
 

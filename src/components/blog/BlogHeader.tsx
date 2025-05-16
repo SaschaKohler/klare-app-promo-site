@@ -24,11 +24,11 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
   customImage,
 }) => {
   // Detailed logging for debugging
-  console.log("BlogHeader - image path received:", image);
-  console.log(
-    "BlogHeader - customImage received:",
-    customImage ? "Present" : "Not present",
-  );
+  // console.log("BlogHeader - image path received:", image);
+  // console.log(
+  //   "BlogHeader - customImage received:",
+  //   customImage ? "Present" : "Not present",
+  // );
   // Format date to match the old format
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
     day: "numeric",
@@ -108,7 +108,10 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
             alt={`Cover image for ${title}`}
             fill
             className="object-cover"
-            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            sizes="(max-width: 768px) 100vw, 800px"
+            priority={category === "Featured"}
             onError={(e) => {
               // Handle image loading error
               console.warn(`Failed to load image: ${image}`);
