@@ -15,7 +15,6 @@
     "@next/mdx": "^15.3.2",
     "@types/mdx": "^2.0.13",
     "autoprefixer": "^10.4.17",
-    "critters": "^0.0.20",
     "framer-motion": "^11.0.5",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.510.0",
