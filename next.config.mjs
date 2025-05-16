@@ -26,8 +26,8 @@ const nextConfig = {
   experimental: {
     // Reduziert den Speicherverbrauch durch Optimierung der Server-Komponenten
     serverComponentsExternalPackages: [],
-    // Reduziert die Gesamtgröße des Bundles
-    optimizeCss: true,
+    // CSS-Optimierung auskommentiert, um Build-Fehler zu vermeiden
+    // optimizeCss: true,
   },
 };
 
