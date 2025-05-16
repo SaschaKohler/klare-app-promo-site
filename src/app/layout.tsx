@@ -80,36 +80,6 @@ export default function RootLayout({
         {/* Next.js will automatically insert metadata, etc. here */}
         <link 
           rel="preload" 
-          href="/klare-svg/K-circle.svg" 
-          as="image" 
-          type="image/svg+xml"
-        />
-        <link 
-          rel="preload" 
-          href="/klare-svg/L-circle.svg" 
-          as="image" 
-          type="image/svg+xml"
-        />
-        <link 
-          rel="preload" 
-          href="/klare-svg/A-circle.svg" 
-          as="image" 
-          type="image/svg+xml"
-        />
-        <link 
-          rel="preload" 
-          href="/klare-svg/R-circle.svg" 
-          as="image" 
-          type="image/svg+xml"
-        />
-        <link 
-          rel="preload" 
-          href="/klare-svg/E-circle.svg" 
-          as="image" 
-          type="image/svg+xml"
-        />
-        <link 
-          rel="preload" 
           href="/images/app-screenshots-organized/welcome-screen.png" 
           as="image" 
           type="image/png"

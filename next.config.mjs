@@ -1,17 +1,17 @@
 // @ts-check
-import nextMDX from '@next/mdx';
+import nextMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   // Aktiviere MDX-Dateierweiterungen
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    domains: ['localhost', 'klare-methode.app'],
+    domains: ["localhost", "klare-methode.app"],
     // Füge weitere Domains hinzu, falls benötigt
     // domains: ['localhost', 'example.com'],
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -19,7 +19,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Aktiviere die Output-Option für Docker-Deployment
-  output: 'standalone',
+  output: "standalone",
   // Reduziere die Bundle-Größe
   poweredByHeader: false,
   // Verbessere Chunk-Loading und reduziere Client-Fehler
@@ -33,30 +33,30 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     // Optimiere Chunk-Splitting für bessere Performance
     config.optimization.splitChunks = {
-      chunks: 'all',
+      chunks: "all",
       cacheGroups: {
         default: false,
         vendors: false,
         commons: {
-          name: 'commons',
-          chunks: 'all',
+          name: "commons",
+          chunks: "all",
           minChunks: 2,
           reuseExistingChunk: true,
         },
         shared: {
-          name: 'shared',
+          name: "shared",
           minChunks: 2,
           priority: 10,
           reuseExistingChunk: true,
         },
       },
     };
-    
+
     // Temporär: Deaktiviere Minifizierung für einfachere Fehleranalyse
-    if (!isServer && !dev) {
-      config.optimization.minimize = false;
-    }
-    
+    // if (!isServer && !dev) {
+    //   config.optimization.minimize = false;
+    // }
+
     return config;
   },
 };
@@ -68,3 +68,4 @@ const withMDX = nextMDX({
 
 // Exportiere die Konfiguration
 export default withMDX(nextConfig);
+

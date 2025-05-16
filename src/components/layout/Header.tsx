@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
+import KlareSvg from "../KlareSvg";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,46 +32,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="flex space-x-1 items-center">
-              <Image
-                src="/klare-svg/K-circle.svg"
-                width={36}
-                height={36}
-                alt="K"
-                className="w-9 h-9"
-                priority
-              />
-              <Image
-                src="/klare-svg/L-circle.svg"
-                width={36}
-                height={36}
-                alt="L"
-                className="w-9 h-9"
-                priority
-              />
-              <Image
-                src="/klare-svg/A-circle.svg"
-                width={36}
-                height={36}
-                alt="A"
-                className="w-9 h-9"
-                priority
-              />
-              <Image
-                src="/klare-svg/R-circle.svg"
-                width={36}
-                height={36}
-                alt="R"
-                className="w-9 h-9"
-                priority
-              />
-              <Image
-                src="/klare-svg/E-circle.svg"
-                width={36}
-                height={36}
-                alt="E"
-                className="w-9 h-9"
-                priority
-              />
+              <KlareSvg letter="K" className="w-9 h-9" />
+              <KlareSvg letter="L" className="w-9 h-9" />
+              <KlareSvg letter="A" className="w-9 h-9" />
+              <KlareSvg letter="R" className="w-9 h-9" />
+              <KlareSvg letter="E" className="w-9 h-9" />
               <span className="ml-2 text-xl font-bold dark:text-white">
                 App
               </span>
