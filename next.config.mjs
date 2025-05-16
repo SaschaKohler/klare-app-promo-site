@@ -8,16 +8,27 @@ const nextConfig = {
   // Aktiviere MDX-Dateierweiterungen
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'klare-methode.app'],
     // Füge weitere Domains hinzu, falls benötigt
     // domains: ['localhost', 'example.com'],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Aktiviere die Output-Option für Docker-Deployment
   output: 'standalone',
+  // Reduziere die Bundle-Größe
+  poweredByHeader: false,
+  // Verbessere Server-Performance
+  experimental: {
+    // Reduziert den Speicherverbrauch durch Optimierung der Server-Komponenten
+    serverComponentsExternalPackages: [],
+    // Reduziert die Gesamtgröße des Bundles
+    optimizeCss: true,
+  },
 };
 
 const withMDX = nextMDX({

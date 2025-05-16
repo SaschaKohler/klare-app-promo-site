@@ -9,7 +9,7 @@ metadata:
   name: klare-app-promo-site
   namespace: klare-methode-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: klare-app-promo-site
@@ -35,10 +35,10 @@ spec:
               value: "false"
           resources:
             requests:
-              memory: "256Mi"
+              memory: "128Mi"
               cpu: "100m"
             limits:
-              memory: "512Mi"
+              memory: "384Mi"
               cpu: "300m"
           readinessProbe:
             httpGet:
@@ -89,22 +89,13 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    # Vereinfachte Cache-Konfiguration für K3s-Kompatibilität
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      expires $expires;
-      proxy_cache_valid 200 302 7d;
-      proxy_cache_valid 404 1m;
+      add_header Cache-Control "public, max-age=604800";
+    # Minimale Location-Direktiven für K3s
     nginx.ingress.kubernetes.io/server-snippet: |
       location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg)$ {
-        expires 7d;
-        add_header Cache-Control "public, no-transform";
-      }
-      location /_next/image {
-        expires 7d;
-        add_header Cache-Control "public, no-transform";
-      }
-      location /_next/static {
-        expires 7d;
-        add_header Cache-Control "public, no-transform";
+        add_header Cache-Control "public, max-age=604800, immutable";
       }
 spec:
   ingressClassName: nginx

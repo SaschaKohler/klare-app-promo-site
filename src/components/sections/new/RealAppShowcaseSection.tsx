@@ -80,7 +80,7 @@ export default function RealAppShowcaseSection() {
     const interval = setInterval(() => {
       setDirection(1);
       setActiveIndex((prev) => (prev + 1) % appScreenshots.length);
-    }, 5000);
+    }, 8000); // Längeres Intervall für weniger CPU-Last
     return () => clearInterval(interval);
   }, [inView, appScreenshots.length]);
 

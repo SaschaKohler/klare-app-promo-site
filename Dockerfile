@@ -9,7 +9,8 @@ RUN apk add --no-cache libc6-compat
 # Optimierung für npm ci und Caching
 FROM base AS dependencies
 COPY package.json package-lock.json ./
-RUN npm ci
+# Nur Produktionsabhängigkeiten installieren für geringeren Speicherverbrauch
+RUN npm ci --only=production
 
 # Build-Stage
 FROM dependencies AS builder
