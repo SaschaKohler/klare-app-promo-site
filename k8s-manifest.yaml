@@ -90,12 +90,24 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
     # Vereinfachte Cache-Konfiguration für K3s-Kompatibilität
+    # Cache-Control Header mit kürzerer Caching-Zeit für JS-Dateien (1 Tag)
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      add_header Cache-Control "public, max-age=604800";
-    # Minimale Location-Direktiven für K3s
+      add_header Cache-Control "public, max-age=86400";
+    # Minimale Location-Direktiven für K3s mit verbesserten Cache-Einstellungen
     nginx.ingress.kubernetes.io/server-snippet: |
-      location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg)$ {
+      # Bilder und statische Assets langfristig cachen
+      location ~* \.(jpg|jpeg|png|gif|ico|css|svg)$ {
         add_header Cache-Control "public, max-age=604800, immutable";
+      }
+      # JS-Dateien mit kurzer Caching-Zeit und No-Cache für Chunks
+      location ~* \.js$ {
+        add_header Cache-Control "public, max-age=86400";
+      }
+      # Keine Caching für kritische Next.js-Chunk-Dateien
+      location ~* /next/static/chunks/ {
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+        add_header Pragma "no-cache";
+        add_header Expires "0";
       }
 spec:
   ingressClassName: nginx

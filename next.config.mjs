@@ -22,12 +22,42 @@ const nextConfig = {
   output: 'standalone',
   // Reduziere die Bundle-Größe
   poweredByHeader: false,
-  // Verbessere Server-Performance
+  // Verbessere Chunk-Loading und reduziere Client-Fehler
   experimental: {
     // Reduziert den Speicherverbrauch durch Optimierung der Server-Komponenten
     serverComponentsExternalPackages: [],
     // CSS-Optimierung auskommentiert, um Build-Fehler zu vermeiden
     // optimizeCss: true,
+  },
+  // Verbessere Chunk-Loading
+  webpack: (config, { dev, isServer }) => {
+    // Optimiere Chunk-Splitting für bessere Performance
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2,
+          reuseExistingChunk: true,
+        },
+        shared: {
+          name: 'shared',
+          minChunks: 2,
+          priority: 10,
+          reuseExistingChunk: true,
+        },
+      },
+    };
+    
+    // Temporär: Deaktiviere Minifizierung für einfachere Fehleranalyse
+    if (!isServer && !dev) {
+      config.optimization.minimize = false;
+    }
+    
+    return config;
   },
 };
 

@@ -120,6 +120,10 @@ export default function RootLayout({
           as="image" 
           type="image/png"
         />
+        {/* Verhindern, dass der Browser gecachte Assets verwendet, die Probleme verursachen könnten */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
       </head>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
         <GlobalSchema />
