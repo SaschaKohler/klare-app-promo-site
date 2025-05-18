@@ -1,126 +1,59 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiArrowRight, FiCheck } from "react-icons/fi";
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { FiMail, FiArrowRight } from 'react-icons/fi';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 
 export default function CallToAction() {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!email) return;
-
-    setIsLoading(true);
-    setStatus("idle");
-    setMessage("");
-
-    try {
-      const response = await fetch("/api/newsletter-signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          source: "klare-app-promo",
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus("success");
-        setMessage("Vielen Dank für Deine Anmeldung!");
-        setEmail("");
-      } else {
-        setStatus("error");
-        setMessage(data.message || "Ein Fehler ist aufgetreten.");
-      }
-    } catch (error) {
-      setStatus("error");
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Bitte versuche es später erneut.",
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  const { isEnglish } = useI18n();
+  
   return (
-    <section
-      className="py-20 bg-gradient-to-r from-klare-k to-klare-a text-white"
-      id="call-to-action"
-    >
-      <div className="container mx-auto px-4 md:px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-            Sei unter den Ersten, die die KLARE App nutzen
-          </h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
-            Melde Dich jetzt für Updates an und erhalte frühzeitigen Zugang zur
-            Beta-Version.
-          </p>
-
-          <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <section className="py-20 bg-white dark:bg-gray-900" id="call-to-action">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="bg-gradient-klare rounded-3xl py-16 px-8 md:py-20 md:px-12 text-center text-white overflow-hidden relative">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-klare-k via-klare-a to-klare-e opacity-90"></div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto relative z-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              {isEnglish ? "Ready for more congruence in your life?" : "Bereit für mehr Kongruenz in deinem Leben?"}
+            </h2>
+            <p className="text-lg md:text-xl mb-10 text-gray-100">
+              {isEnglish 
+                ? "Sign up to receive updates about the CLEAR App and be among the first to get access."
+                : "Melde dich an, um Updates zur KLARE App zu erhalten und sei unter den Ersten, die Zugang bekommen."}
+            </p>
+            
+            <form className="flex flex-col sm:flex-row max-w-lg mx-auto gap-3 mb-4">
               <input
                 type="email"
-                placeholder="Deine E-Mail-Adresse"
-                className="w-full py-3 px-6 rounded-full bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder={isEnglish ? "Your email address" : "Deine E-Mail-Adresse"}
+                className="flex-grow px-5 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
                 required
-                disabled={isLoading || status === "success"}
               />
               <button
                 type="submit"
-                disabled={isLoading || status === "success"}
-                className="whitespace-nowrap bg-white text-klare-k hover:bg-gray-100 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center gap-2 disabled:opacity-70"
+                className="bg-white text-klare-a hover:text-klare-k font-medium px-5 py-3 rounded-full transition-colors flex items-center justify-center"
               >
-                {isLoading ? (
-                  "Wird angemeldet..."
-                ) : status === "success" ? (
-                  <>
-                    Angemeldet <FiCheck />
-                  </>
-                ) : (
-                  <>
-                    Anmelden <FiArrowRight />
-                  </>
-                )}
+                {isEnglish ? "Get Updates" : "Updates erhalten"}
+                <FiArrowRight className="ml-2" />
               </button>
-            </div>
-
-            {status !== "idle" && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`mt-4 font-medium ${status === "error" ? "text-red-300" : "text-green-300"}`}
-              >
-                {message}
-              </motion.p>
-            )}
-          </form>
-
-          <p className="mt-6 text-sm text-white/80">
-            Wir respektieren Deine Privatsphäre und senden Dir nur relevante
-            Updates.
-          </p>
-        </motion.div>
+            </form>
+            
+            <p className="text-sm text-gray-200">
+              {isEnglish 
+                ? "We respect your privacy. No spam emails."
+                : "Wir respektieren deine Privatsphäre. Keine Spam-Mails."}
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-

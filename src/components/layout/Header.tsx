@@ -5,10 +5,15 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import KlareSvg from "../KlareSvg";
+import ClearSvg from "../ClearSvg";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en') || (typeof window !== 'undefined' && window.location.hostname.startsWith('en.'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +37,25 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="flex space-x-1 items-center">
-              <KlareSvg letter="K" className="w-9 h-9" />
-              <KlareSvg letter="L" className="w-9 h-9" />
-              <KlareSvg letter="A" className="w-9 h-9" />
-              <KlareSvg letter="R" className="w-9 h-9" />
-              <KlareSvg letter="E" className="w-9 h-9" />
+              {isEnglish ? (
+                // CLEAR Logo für Englisch
+                <>
+                  <ClearSvg letter="C" className="w-9 h-9" />
+                  <ClearSvg letter="L" className="w-9 h-9" />
+                  <ClearSvg letter="E" className="w-9 h-9" />
+                  <ClearSvg letter="A" className="w-9 h-9" />
+                  <ClearSvg letter="R" className="w-9 h-9" />
+                </>
+              ) : (
+                // KLARE Logo für Deutsch
+                <>
+                  <KlareSvg letter="K" className="w-9 h-9" />
+                  <KlareSvg letter="L" className="w-9 h-9" />
+                  <KlareSvg letter="A" className="w-9 h-9" />
+                  <KlareSvg letter="R" className="w-9 h-9" />
+                  <KlareSvg letter="E" className="w-9 h-9" />
+                </>
+              )}
               <span className="ml-2 text-xl font-bold dark:text-white">
                 App
               </span>
@@ -49,19 +68,19 @@ export default function Header() {
               href="/#features"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
-              Features
+              {isEnglish ? "Features" : "Features"}
             </Link>
             <Link
               href="/#methode"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
-              KLARE Methode
+              {isEnglish ? "CLEAR Method" : "KLARE Methode"}
             </Link>
             <Link
               href="/#showcase"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
-              Preview
+              {isEnglish ? "Preview" : "Preview"}
             </Link>
             {/* <Link  */}
             {/*   href="/#about"  */}
@@ -73,13 +92,13 @@ export default function Header() {
               href="/#faq"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
-              FAQ
+              {isEnglish ? "FAQ" : "FAQ"}
             </Link>
             <Link
               href="/blog"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
-              Blog
+              {isEnglish ? "Blog" : "Blog"}
             </Link>
             <Link href="/#call-to-action">
               <button
@@ -89,9 +108,12 @@ export default function Header() {
                     : "bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90"
                 }`}
               >
-                Updates erhalten
+                {isEnglish ? "Get Updates" : "Updates erhalten"}
               </button>
             </Link>
+            
+            {/* Sprachumschalter */}
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -128,21 +150,21 @@ export default function Header() {
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Features
+              {isEnglish ? "Features" : "Features"}
             </Link>
             <Link
               href="/#methode"
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              KLARE Methode
+              {isEnglish ? "CLEAR Method" : "KLARE Methode"}
             </Link>
             <Link
               href="/#showcase"
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Preview
+              {isEnglish ? "Preview" : "Preview"}
             </Link>
             {/* <Link  */}
             {/*   href="#about"  */}
@@ -155,23 +177,28 @@ export default function Header() {
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              FAQ
+              {isEnglish ? "FAQ" : "FAQ"}
             </Link>
             <Link
               href="/blog"
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Blog
+              {isEnglish ? "Blog" : "Blog"}
             </Link>
             <Link
               href="/#call-to-action"
               onClick={() => setMobileMenuOpen(false)}
             >
               <button className="py-2 px-5 rounded-full font-medium bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 transition-all">
-                Updates erhalten
+                {isEnglish ? "Get Updates" : "Updates erhalten"}
               </button>
             </Link>
+            
+            {/* Sprachumschalter im mobilen Menü */}
+            <div className="py-2">
+              <LanguageSwitcher />
+            </div>
           </div>
         </motion.div>
       )}

@@ -1,22 +1,24 @@
-"use client";
+'use client';
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export default function RealAppShowcaseSection() {
+  const { isEnglish } = useI18n();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  // App Screenshots with descriptive information
+  // App Screenshots mit Beschreibungen
   const appScreenshots = [
     {
       id: "welcome",
-      name: "Willkommen",
-      description: "Der Startpunkt deiner Transformationsreise",
+      name: isEnglish ? "Welcome" : "Willkommen",
+      description: isEnglish ? "The starting point of your transformation journey" : "Der Startpunkt deiner Transformationsreise",
       image: "/images/app-screenshots-organized/welcome-screen.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
@@ -25,7 +27,7 @@ export default function RealAppShowcaseSection() {
     {
       id: "dashboard",
       name: "Dashboard",
-      description: "Personalisierte Übersicht deines Fortschritts",
+      description: isEnglish ? "Personalized overview of your progress" : "Personalisierte Übersicht deines Fortschritts",
       image: "/images/app-screenshots-organized/home-dashboard.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
@@ -33,8 +35,8 @@ export default function RealAppShowcaseSection() {
     },
     {
       id: "lifewheel",
-      name: "Lebensrad",
-      description: "Visualisiere deine Lebensbereiche",
+      name: isEnglish ? "Life Wheel" : "Lebensrad",
+      description: isEnglish ? "Visualize your life areas" : "Visualisiere deine Lebensbereiche",
       image: "/images/app-screenshots-organized/life-wheel.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
@@ -43,7 +45,7 @@ export default function RealAppShowcaseSection() {
     {
       id: "journal",
       name: "Journal",
-      description: "Reflexion für tiefere Selbsterkenntnis",
+      description: isEnglish ? "Reflection for deeper self-awareness" : "Reflexion für tiefere Selbsterkenntnis",
       image: "/images/app-screenshots-organized/journal-templates.png",
       color: "from-klare-r/30 to-klare-r/10",
       darkColor: "dark:from-dark-klare-r/40 dark:to-dark-klare-r/20",
@@ -51,8 +53,8 @@ export default function RealAppShowcaseSection() {
     },
     {
       id: "resources",
-      name: "Ressourcen",
-      description: "Aktiviere deine persönlichen Ressourcen",
+      name: isEnglish ? "Resources" : "Ressourcen",
+      description: isEnglish ? "Activate your personal resources" : "Aktiviere deine persönlichen Ressourcen",
       image: "/images/app-screenshots-organized/resources-library.png",
       color: "from-klare-e/30 to-klare-e/10",
       darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
@@ -60,8 +62,8 @@ export default function RealAppShowcaseSection() {
     },
     {
       id: "klare-method",
-      name: "KLARE-Methode",
-      description: "Entdecke deinen Weg zur Kongruenz",
+      name: isEnglish ? "CLEAR Method" : "KLARE-Methode",
+      description: isEnglish ? "Discover your path to congruence" : "Entdecke deinen Weg zur Kongruenz",
       image: "/images/app-screenshots-organized/klare-k-module.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
@@ -69,8 +71,8 @@ export default function RealAppShowcaseSection() {
     },
     {
       id: "vision-board",
-      name: "Vision Board",
-      description: "Visualisiere deine Ziele und Träume",
+      name: isEnglish ? "Vision Board" : "Vision Board",
+      description: isEnglish ? "Visualize your goals and dreams" : "Visualisiere deine Ziele und Träume",
       image: "/images/app-screenshots-organized/vision-board.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
@@ -133,12 +135,15 @@ export default function RealAppShowcaseSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-klare-text dark:text-white">
-            <span className="text-klare-l dark:text-klare-l">Entdecke</span> die
-            KLARE Methode App
+            <span className="text-klare-l dark:text-klare-l">
+              {isEnglish ? "Discover" : "Entdecke"}
+            </span>{" "}
+            {isEnglish ? "the CLEAR Method App" : "die KLARE Methode App"}
           </h2>
           <p className="text-lg text-klare-text-secondary dark:text-gray-300 max-w-2xl mx-auto">
-            Eine intuitive Benutzeroberfläche, die dich durch deinen
-            persönlichen Transformationsprozess begleitet.
+            {isEnglish
+              ? "An intuitive user interface that guides you through your personal transformation process."
+              : "Eine intuitive Benutzeroberfläche, die dich durch deinen persönlichen Transformationsprozess begleitet."}
           </p>
         </div>
 
@@ -206,7 +211,7 @@ export default function RealAppShowcaseSection() {
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              aria-label="Previous screenshot"
+              aria-label={isEnglish ? "Previous screenshot" : "Vorheriger Screenshot"}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +230,7 @@ export default function RealAppShowcaseSection() {
             <button
               onClick={handleNext}
               className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              aria-label="Next screenshot"
+              aria-label={isEnglish ? "Next screenshot" : "Nächster Screenshot"}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +259,9 @@ export default function RealAppShowcaseSection() {
                     ? "bg-klare-l w-8"
                     : "bg-gray-300 dark:bg-gray-600"
                 }`}
-                aria-label={`Go to screenshot ${index + 1}`}
+                aria-label={isEnglish 
+                  ? `Go to screenshot ${index + 1}` 
+                  : `Zu Screenshot ${index + 1} wechseln`}
               />
             ))}
           </div>
@@ -279,7 +286,7 @@ export default function RealAppShowcaseSection() {
         {/* App Store Badges */}
         <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
           <p className="text-klare-text-secondary dark:text-gray-300">
-            Bald verfügbar:
+            {isEnglish ? "Coming soon:" : "Bald verfügbar:"}
           </p>
           <div className="flex flex-row space-x-4 mt-6">
             <a
@@ -287,10 +294,14 @@ export default function RealAppShowcaseSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src="/images/app-store-badges/app-store-badge-de.svg"
+                src={isEnglish 
+                  ? "/images/app-store-badges/app-store-badge-en.svg" 
+                  : "/images/app-store-badges/app-store-badge-de.svg"}
                 width={120}
                 height={40}
-                alt="Im Apple App Store herunterladen"
+                alt={isEnglish 
+                  ? "Download on the App Store" 
+                  : "Im Apple App Store herunterladen"}
                 className="w-full h-auto"
               />
             </a>
@@ -299,10 +310,14 @@ export default function RealAppShowcaseSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src="/images/app-store-badges/google_play_store_badge_en.svg"
+                src={isEnglish 
+                  ? "/images/app-store-badges/google_play_store_badge_en.svg" 
+                  : "/images/app-store-badges/google_play_store_badge_de.svg"}
                 width={120}
                 height={40}
-                alt="Im Google Play Store herunterladen"
+                alt={isEnglish 
+                  ? "Get it on Google Play" 
+                  : "Im Google Play Store herunterladen"}
                 className="w-full h-auto"
               />
             </a>
@@ -328,11 +343,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Intuitives Design
+              {isEnglish ? "Intuitive Design" : "Intuitives Design"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Einfach zu navigieren, selbst für Technologie-Einsteiger. Die App
-              führt dich sanft durch jeden Schritt deiner Transformation.
+              {isEnglish
+                ? "Easy to navigate, even for technology beginners. The app gently guides you through each step of your transformation."
+                : "Einfach zu navigieren, selbst für Technologie-Einsteiger. Die App führt dich sanft durch jeden Schritt deiner Transformation."}
             </p>
           </div>
 
@@ -354,11 +370,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Personalisierte Erfahrung
+              {isEnglish ? "Personalized Experience" : "Personalisierte Erfahrung"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Die App passt sich deinen individuellen Bedürfnissen und deinem
-              Fortschritt an, für ein maßgeschneidertes Transformationserlebnis.
+              {isEnglish
+                ? "The app adapts to your individual needs and progress, for a tailored transformation experience."
+                : "Die App passt sich deinen individuellen Bedürfnissen und deinem Fortschritt an, für ein maßgeschneidertes Transformationserlebnis."}
             </p>
           </div>
 
@@ -380,11 +397,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Daten-Privatsphäre
+              {isEnglish ? "Data Privacy" : "Daten-Privatsphäre"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Deine persönlichen Daten bleiben geschützt. Die App speichert
-              sensible Informationen lokal auf deinem Gerät.
+              {isEnglish
+                ? "Your personal data remains protected. The app stores sensitive information locally on your device."
+                : "Deine persönlichen Daten bleiben geschützt. Die App speichert sensible Informationen lokal auf deinem Gerät."}
             </p>
           </div>
 
@@ -406,11 +424,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Fortschritts-Tracking
+              {isEnglish ? "Progress Tracking" : "Fortschritts-Tracking"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Verfolge deine Entwicklung visuell und erkenne Muster für eine
-              nachhaltige Transformation.
+              {isEnglish
+                ? "Track your development visually and recognize patterns for sustainable transformation."
+                : "Verfolge deine Entwicklung visuell und erkenne Muster für eine nachhaltige Transformation."}
             </p>
           </div>
 
@@ -432,11 +451,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Regelmäßige Updates
+              {isEnglish ? "Regular Updates" : "Regelmäßige Updates"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Die App entwickelt sich kontinuierlich weiter mit neuen Funktionen
-              und Verbesserungen basierend auf Nutzer-Feedback.
+              {isEnglish
+                ? "The app continuously evolves with new features and improvements based on user feedback."
+                : "Die App entwickelt sich kontinuierlich weiter mit neuen Funktionen und Verbesserungen basierend auf Nutzer-Feedback."}
             </p>
           </div>
 
@@ -458,11 +478,12 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              Offline-Funktionalität
+              {isEnglish ? "Offline Functionality" : "Offline-Funktionalität"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
-              Nutze die App auch ohne Internetverbindung. Synchronisiere deine
-              Daten, wenn du wieder online bist.
+              {isEnglish
+                ? "Use the app even without an internet connection. Synchronize your data when you're back online."
+                : "Nutze die App auch ohne Internetverbindung. Synchronisiere deine Daten, wenn du wieder online bist."}
             </p>
           </div>
         </div>

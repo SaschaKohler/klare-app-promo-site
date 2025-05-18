@@ -9,6 +9,7 @@ import PageViewTracker from '@/components/analytics/PageViewTracker';
 import GoogleTagManagerDirect from '@/components/analytics/GoogleTagManagerDirect';
 import ImageLoadScript from '@/components/utils/ImageLoadScript';
 import { Suspense } from 'react';
+import { I18nProvider } from '@/lib/i18n/I18nProvider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
@@ -32,8 +33,8 @@ export const metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'de-DE': '/de',
-      'en-US': '/en',
+      'de-DE': 'https://klare-methode.app',
+      'en-US': 'https://en.klare-methode.app',
     },
   },
   openGraph: {
@@ -75,8 +76,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Host-basierte Spracherkennung (für Produktion)
+  let lang = 'de';
+  if (typeof window !== 'undefined') {
+    lang = window.location.hostname.startsWith('en.') ? 'en' : 'de';
+  }
+
   return (
-    <html lang="de" className={`${inter.variable} ${montserrat.variable} dark`}>
+    <html lang={lang} className={`${inter.variable} ${montserrat.variable} dark`}>
       <head>
         {/* Next.js will automatically insert metadata, etc. here */}
         {/* Preload für kritische Bilder */}
@@ -111,15 +118,17 @@ export default function RootLayout({
         <meta httpEquiv="Expires" content="0" />
       </head>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
-        <GlobalSchema />
-        <CookieConsent />
-        <GoogleTagManagerDirect />
-        <ImageLoadScript />
-        <PageViewTracker>
-          <Header />
-          {children}
-          <Footer />
-        </PageViewTracker>
+        <I18nProvider>
+          <GlobalSchema />
+          <CookieConsent />
+          <GoogleTagManagerDirect />
+          <ImageLoadScript />
+          <PageViewTracker>
+            <Header />
+            {children}
+            <Footer />
+          </PageViewTracker>
+        </I18nProvider>
       </body>
     </html>
   );
