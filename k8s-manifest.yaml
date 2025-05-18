@@ -21,7 +21,13 @@ spec:
       containers:
         - name: website
           image: blisha234/klare-app-promo-site:latest
-          imagePullPolicy: IfNotPresent  # Reduziert unnötige Image-Pulls
+          imagePullPolicy: Always  # Zurück zu Always, um neues Image zu erzwingen
+          startupProbe:            # Neue Startup-Sonde für langsame Starts
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 30   # Erlaubt bis zu 30 Fehler (300 Sekunden bei 10s Periode)
+            periodSeconds: 10
           ports:
             - containerPort: 3000
               name: http
@@ -38,41 +44,48 @@ spec:
               value: "false"
           resources:
             requests:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "100m"
             limits:
-              memory: "384Mi"
-              cpu: "300m"
+              memory: "512Mi"
+              cpu: "500m"
           securityContext:
             allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            readOnlyRootFilesystem: true  # Erhöht die Sicherheit
+            runAsUser: 1001  # Explizite numerische ID anstatt Name
+            runAsGroup: 1001
+            # Wir entfernen readOnlyRootFilesystem, da es Probleme mit dem Cache verursacht
             capabilities:
               drop:
                 - ALL
           volumeMounts:
             - name: tmp-volume
               mountPath: /tmp  # Benötigt für temporäre Dateien
+            - name: cache-volume
+              mountPath: /app/.next/cache
           readinessProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 15  # Reduziert auf 15s für schnelleres Start-Feedback
-            periodSeconds: 10
-            timeoutSeconds: 3
+            initialDelaySeconds: 60  # Längere Verzögerung, um sicherzustellen, dass die App vollständig gestartet ist
+            periodSeconds: 15
+            timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 30  # Reduziert auf 30s für schnelleres Recovery
-            periodSeconds: 20
-            timeoutSeconds: 3
-            failureThreshold: 3
+            initialDelaySeconds: 120  # Noch längere Verzögerung für Liveness
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 6  # Mehr Fehlversuche erlauben
       volumes:
         - name: tmp-volume
           emptyDir: {}
+        - name: cache-volume
+          emptyDir: 
+            medium: Memory  # Speichere den Cache im RAM für bessere Performance
+            sizeLimit: 500Mi  # Begrenze die Größe des Caches
 ---
 apiVersion: v1
 kind: Secret
@@ -89,14 +102,19 @@ kind: Service
 metadata:
   name: klare-app-promo-site
   namespace: klare-methode-app
+  annotations:
+    prometheus.io/scrape: "true"  # Zusätzliche Metriken
+    prometheus.io/port: "3000"
 spec:
   selector:
     app: klare-app-promo-site
   ports:
     - port: 80
       name: http
-      targetPort: http
+      targetPort: 3000
+      protocol: TCP
   type: ClusterIP
+  publishNotReadyAddresses: false  # Stellen Sie sicher, dass nur bereite Pods Traffic erhalten
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -108,7 +126,14 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    # Nur grundlegende Sicherheits-Header, keine Cache-Anweisungen
+    # Erhöhte Timeouts für bessere Stabilität
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    # Verbesserte Upstream-Fehlerbehandlung
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
+    # Standard Header zur Verbesserung der Sicherheit
     nginx.ingress.kubernetes.io/configuration-snippet: |
       add_header X-Content-Type-Options "nosniff" always;
       add_header X-Frame-Options "SAMEORIGIN" always;

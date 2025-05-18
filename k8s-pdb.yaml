@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: klare-app-promo-site-pdb
+  namespace: klare-methode-app
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: klare-app-promo-site

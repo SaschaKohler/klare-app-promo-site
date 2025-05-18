@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: klare-app-promo-site-network-policy
+  namespace: klare-methode-app
+spec:
+  podSelector:
+    matchLabels:
+      app: klare-app-promo-site
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector: {}  # Erlaubt Ingress-Traffic aus allen Namespaces
+    ports:
+    - protocol: TCP
+      port: 3000
