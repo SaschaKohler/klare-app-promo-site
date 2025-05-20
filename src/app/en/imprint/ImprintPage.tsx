@@ -3,13 +3,13 @@ import React from "react";
 import Link from "next/link";
 import { FileText, Shield, ExternalLink } from "lucide-react";
 
-// Impressum Komponente
-const ImpressumPage: React.FC = () => {
+// Imprint Component
+const ImprintPage: React.FC = () => {
   return (
     <>
-      {/* Header mit KLARE-Methode Buchstaben */}
+      {/* Header with CLEAR Method letters */}
       <header className="py-16 relative overflow-hidden">
-        {/* Hintergrund mit Farbverlauf */}
+        {/* Background with gradient */}
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -17,10 +17,10 @@ const ImpressumPage: React.FC = () => {
           }}
         ></div>
 
-        {/* KLARE Methode als dekorative Elemente im Hintergrund */}
+        {/* CLEAR Method as decorative elements in background */}
         <div className="absolute inset-0 z-0 opacity-10 flex items-center justify-center overflow-hidden">
           <div className="flex space-x-6 sm:space-x-12 transform -rotate-12 scale-150">
-            {["K", "L", "A", "R", "E"].map((letter, index) => (
+            {["C", "L", "E", "A", "R"].map((letter, index) => (
               <div
                 key={index}
                 className="text-8xl sm:text-9xl font-bold text-white"
@@ -34,99 +34,100 @@ const ImpressumPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Tatsächliche Überschrift mit verbesserter Lesbarkeit */}
-        <div className="container mx-auto px-4 md:pt-6 md:px-8 relative z-10">
+        {/* Actual heading with improved readability */}
+        <div className="container mx-auto px-4 md:px-8 md:pt-6 r relative z-10">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 relative">
-            Impressum
+            Imprint
             <div className="absolute bottom-0 left-0 h-1 w-20 mt-2 bg-white"></div>
           </h1>
 
           <p className="max-w-3xl text-white/90 text-lg relative z-10">
-            Gemäß § 5 ECG, § 25 MedienG und § 63 GewO - Gesetzlich erforderliche
-            Angaben
+            According to § 5 ECG, § 25 MedienG and § 63 GewO - Legally required
+            information
           </p>
         </div>
       </header>
 
-      {/* Hauptinhalt */}
+      {/* Main content */}
       <main className="container mx-auto px-4 md:px-8 py-8 mb-16">
         <div className="max-w-3xl mx-auto bg-white dark:bg-dark-klare-card p-8 rounded-lg shadow-sm">
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Angaben gemäß § 5 ECG
+              Information according to § 5 ECG
             </h2>
             <div className="space-y-3">
               <p className="font-medium">Sascha Kohler</p>
               <p>Furth 6</p>
               <p>4311 Schwertberg</p>
-              <p>Österreich</p>
+              <p>Austria</p>
             </div>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Kontakt
+              Contact
             </h2>
             <div className="space-y-2">
-              <p>Telefon: +43 650 90 30 372</p>
-              <p>E-Mail: office@sascha-kohler.at</p>
+              <p>Phone: +43 650 90 30 372</p>
+              <p>Email: office@sascha-kohler.at</p>
             </div>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Unternehmensdaten
+              Company Information
             </h2>
             <div className="space-y-3">
-              <p>Eingetragene Gewerbe:</p>
+              <p>Registered business areas:</p>
               <ul className="list-disc pl-6 space-y-1">
-                <li>IT-Dienstleistung</li>
-                <li>Werbeagentur</li>
+                <li>IT Services</li>
+                <li>Advertising Agency</li>
               </ul>
-              <p>GISA: 37168483,37168445</p>
+              <p>GISA: 37168483, 37168445</p>
               <p className="mt-4">
-                Zusätzliche freie Gewerbe/neue Selbständige bzw. lfnd.
-                Ausbildung:
+                Additional free trade/new self-employed or ongoing training:
               </p>
               <ul className="list-disc pl-6 space-y-1">
                 <li>Trainer & Speaker</li>
                 <li>
-                  Lebens- und Sozialberater (in Ausbildung unter Supervision){" "}
+                  Life and Social Counselor (in training under supervision){" "}
                   <a
                     href="https://rokakademie.at"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-klare-k dark:text-dark-klare-k border-b border-klare-k dark:border-dark-klare-k transition-opacity hover:opacity-80"
                   >
-                    ROK-Akademie in Wien{" "}
+                    ROK Academy in Vienna{" "}
                     <ExternalLink size={16} className="ml-1" />
                   </a>{" "}
                 </li>
               </ul>
               <p className="mt-4">
-                {/* Bitte ersetzen Sie dies mit Ihrer tatsächlichen UID-Nummer falls vorhanden */}
+                {/* Please replace this with your actual VAT number if available */}
               </p>
-              <p>Mitglied der WKO</p>
-              <p>Berufsrecht: Gewerbeordnung: www.ris.bka.gv.at</p>
+              <p>Member of the Austrian Chamber of Commerce (WKO)</p>
+              <p>
+                Professional regulations: Trade Regulations: www.ris.bka.gv.at
+              </p>
             </div>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Aufsichtsbehörde/Gewerbebehörde
+              Supervisory Authority/Trade Authority
             </h2>
-            <p>Bezirkshauptmannschaft Perg</p>
+            <p>District Administration Perg</p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Verbraucherstreitbeilegung
+              Consumer Dispute Resolution
             </h2>
             <p>
-              Wir erkennen den Internet Ombudsmann als außergerichtliche
-              Streitbeilegungsstelle an. Bei Beschwerden wenden Sie sich bitte
-              an: kontakt@sascha-kohler.at oder an die Plattform zur
-              Online-Streitbeilegung der Europäischen Kommission:
+              We recognize the Internet Ombudsman as an out-of-court dispute
+              resolution body. In case of complaints, please contact:
+              kontakt@sascha-kohler.at or the Online Dispute Resolution platform
+              of the European Commission:
               <a
                 href="https://ec.europa.eu/consumers/odr"
                 target="_blank"
@@ -140,40 +141,38 @@ const ImpressumPage: React.FC = () => {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Urheberrecht
+              Copyright
             </h2>
             <p className="mb-3">
-              Die Inhalte dieser Website sind urheberrechtlich geschützt. Die
-              Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
-              Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der
-              schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+              The contents of this website are protected by copyright. The
+              reproduction, editing, distribution and any kind of exploitation
+              outside the limits of copyright require the written consent of the
+              respective author or creator.
             </p>
             <p>
-              © {new Date().getFullYear()} Sascha Kohler. Alle Rechte
-              vorbehalten.
+              © {new Date().getFullYear()} Sascha Kohler. All rights reserved.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold mb-4 text-klare-k dark:text-dark-klare-k">
-              Haftungsausschluss
+              Disclaimer
             </h2>
             <p className="mb-3">
-              Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine
-              Haftung für die Inhalte externer Links. Für den Inhalt der
-              verlinkten Seiten sind ausschließlich deren Betreiber
-              verantwortlich.
+              Despite careful content control, we assume no liability for the
+              content of external links. The operators of the linked pages are
+              solely responsible for their content.
             </p>
-            <p>Alle Angaben sind ohne Gewähr.</p>
+            <p>All information is provided without guarantee.</p>
           </section>
         </div>
       </main>
 
-      {/* Zurück-Link */}
+      {/* Back Link */}
       <div className="container mx-auto px-4 md:px-8 mb-16">
         <div className="max-w-3xl mx-auto">
           <Link
-            href="/"
+            href="/en"
             className="inline-flex items-center font-medium transition-colors text-klare-k dark:text-dark-klare-k"
           >
             <svg
@@ -191,7 +190,7 @@ const ImpressumPage: React.FC = () => {
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Zurück zur Startseite
+            Back to Homepage
           </Link>
         </div>
       </div>
@@ -199,4 +198,5 @@ const ImpressumPage: React.FC = () => {
   );
 };
 
-export default ImpressumPage;
+export default ImprintPage;
+

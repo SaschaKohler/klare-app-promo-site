@@ -1,6 +1,6 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 
 // Datenschutzerklärung Komponente
 const DatenschutzPage: React.FC = () => {
@@ -42,17 +42,21 @@ const DatenschutzPage: React.FC = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`transition-transform ${openSection === id ? 'rotate-180' : ''}`}
+          className={`transition-transform ${openSection === id ? "rotate-180" : ""}`}
         >
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
       <div
         className={`overflow-hidden transition-all duration-300 ${
-          openSection === id ? 'max-h-[2000px] opacity-100 py-4' : 'max-h-0 opacity-0 py-0'
+          openSection === id
+            ? "max-h-[2000px] opacity-100 py-4"
+            : "max-h-0 opacity-0 py-0"
         }`}
       >
-        <div className="text-klare-text-secondary dark:text-dark-klare-text-secondary space-y-3">{children}</div>
+        <div className="text-klare-text-secondary dark:text-dark-klare-text-secondary space-y-3">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -72,12 +76,12 @@ const DatenschutzPage: React.FC = () => {
         {/* KLARE Methode als dekorative Elemente im Hintergrund */}
         <div className="absolute inset-0 z-0 opacity-10 flex items-center justify-center overflow-hidden">
           <div className="flex space-x-6 sm:space-x-12 transform -rotate-12 scale-150">
-            {['K', 'L', 'A', 'R', 'E'].map((letter, index) => (
+            {["K", "L", "A", "R", "E"].map((letter, index) => (
               <div
                 key={index}
                 className="text-8xl sm:text-9xl font-bold text-white"
                 style={{
-                  textShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                  textShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 }}
               >
                 {letter}
@@ -87,16 +91,16 @@ const DatenschutzPage: React.FC = () => {
         </div>
 
         {/* Tatsächliche Überschrift mit verbesserter Lesbarkeit */}
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className="container mx-auto px-4 md:pt-6 md:px-8 relative z-10">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 relative">
             Datenschutzerklärung
             <div className="absolute bottom-0 left-0 h-1 w-20 mt-2 bg-white"></div>
           </h1>
 
           <p className="max-w-3xl text-white/90 text-lg relative z-10">
-            Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten
-            Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG
-            2003).
+            Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen.
+            Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der
+            gesetzlichen Bestimmungen (DSGVO, TKG 2003).
           </p>
         </div>
       </header>
@@ -106,8 +110,9 @@ const DatenschutzPage: React.FC = () => {
         <div className="max-w-3xl mx-auto bg-white dark:bg-dark-klare-card p-8 rounded-lg shadow-sm">
           <div className="mb-8">
             <p className="mb-4">
-              In dieser Datenschutzerklärung informieren wir Sie über die wichtigsten Aspekte der
-              Datenverarbeitung im Rahmen unserer Website und Dienstleistungen.
+              In dieser Datenschutzerklärung informieren wir Sie über die
+              wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer
+              Website und Dienstleistungen.
             </p>
             <p>
               <strong>Verantwortlicher im Sinne der DSGVO:</strong>
@@ -120,17 +125,20 @@ const DatenschutzPage: React.FC = () => {
               <br />
               Österreich
               <br />
-              E-Mail: office@sascha-kohler.at{' '}
+              E-Mail: office@sascha-kohler.at{" "}
             </p>
           </div>
 
           <div className="space-y-2">
-            <AccordionSection id="datenerfassung" title="1. Datenerfassung auf unserer Website">
+            <AccordionSection
+              id="datenerfassung"
+              title="1. Datenerfassung auf unserer Website"
+            >
               <h3 className="font-medium mb-2">1.1 Server-Logfiles</h3>
               <p>
-                Bei jedem Zugriff auf unsere Website erfasst unser System automatisiert Daten und
-                Informationen vom Computersystem des aufrufenden Rechners. Folgende Daten werden
-                hierbei erhoben:
+                Bei jedem Zugriff auf unsere Website erfasst unser System
+                automatisiert Daten und Informationen vom Computersystem des
+                aufrufenden Rechners. Folgende Daten werden hierbei erhoben:
               </p>
               <ul className="list-disc pl-6 my-3 space-y-1">
                 <li>Browsertyp und -version</li>
@@ -141,80 +149,96 @@ const DatenschutzPage: React.FC = () => {
                 <li>Übertragene Datenmenge</li>
               </ul>
               <p>
-                Die Daten werden in den Logfiles unseres Systems gespeichert. Diese Daten werden
-                nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage für die
-                vorübergehende Speicherung der Daten und Logfiles ist Art. 6 Abs. 1 lit. f DSGVO
-                (berechtigtes Interesse).
+                Die Daten werden in den Logfiles unseres Systems gespeichert.
+                Diese Daten werden nicht mit anderen Datenquellen
+                zusammengeführt. Rechtsgrundlage für die vorübergehende
+                Speicherung der Daten und Logfiles ist Art. 6 Abs. 1 lit. f
+                DSGVO (berechtigtes Interesse).
               </p>
 
               <h3 className="font-medium mt-4 mb-2">1.2 Cookies</h3>
               <p>
-                Unsere Website verwendet Cookies. Cookies sind Textdateien, die über einen
-                Internetbrowser auf einem Computersystem gespeichert werden. Wir setzen Cookies ein,
-                um unsere Website nutzerfreundlicher zu gestalten und bestimmte Funktionen zu
+                Unsere Website verwendet Cookies. Cookies sind Textdateien, die
+                über einen Internetbrowser auf einem Computersystem gespeichert
+                werden. Wir setzen Cookies ein, um unsere Website
+                nutzerfreundlicher zu gestalten und bestimmte Funktionen zu
                 ermöglichen.
               </p>
               <p className="mt-2">
-                Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies
-                informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies
-                für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der
-                Cookies beim Schließen des Browsers aktivieren.
+                Sie können Ihren Browser so einstellen, dass Sie über das Setzen
+                von Cookies informiert werden und Cookies nur im Einzelfall
+                erlauben, die Annahme von Cookies für bestimmte Fälle oder
+                generell ausschließen sowie das automatische Löschen der Cookies
+                beim Schließen des Browsers aktivieren.
               </p>
             </AccordionSection>
 
-            <AccordionSection id="kontaktformular" title="2. Kontaktformular und E-Mail-Kontakt">
+            <AccordionSection
+              id="kontaktformular"
+              title="2. Kontaktformular und E-Mail-Kontakt"
+            >
               <p>
-                Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, werden Ihre angegebenen
-                Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns
-                gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+                Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren,
+                werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und
+                für den Fall von Anschlussfragen bei uns gespeichert. Diese
+                Daten geben wir nicht ohne Ihre Einwilligung weiter.
               </p>
               <p className="mt-3">
-                Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt
-                ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein
-                Widerruf Ihrer bereits erteilten Einwilligung ist jederzeit möglich. Für den
-                Widerruf genügt eine formlose Mitteilung per E-Mail. Die Rechtmäßigkeit der bis zum
-                Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
+                Die Verarbeitung der in das Kontaktformular eingegebenen Daten
+                erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6
+                Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten
+                Einwilligung ist jederzeit möglich. Für den Widerruf genügt eine
+                formlose Mitteilung per E-Mail. Die Rechtmäßigkeit der bis zum
+                Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom
+                Widerruf unberührt.
               </p>
             </AccordionSection>
 
             <AccordionSection id="newsletter" title="3. Newsletter">
               <p>
-                Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir
-                von Ihnen eine E-Mail-Adresse sowie Informationen, welche uns die Überprüfung
-                gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem
+                Wenn Sie den auf der Website angebotenen Newsletter beziehen
+                möchten, benötigen wir von Ihnen eine E-Mail-Adresse sowie
+                Informationen, welche uns die Überprüfung gestatten, dass Sie
+                der Inhaber der angegebenen E-Mail-Adresse sind und mit dem
                 Empfang des Newsletters einverstanden sind.
               </p>
               <p className="mt-3">
-                Für die Verarbeitung der Daten wird im Rahmen des Anmeldevorgangs Ihre Einwilligung
-                eingeholt (Double-Opt-In-Verfahren). Sie können Ihre Einwilligung zum Empfang des
-                Newsletters jederzeit widerrufen. Dazu findet sich in jedem Newsletter ein
-                entsprechender Link.
+                Für die Verarbeitung der Daten wird im Rahmen des
+                Anmeldevorgangs Ihre Einwilligung eingeholt
+                (Double-Opt-In-Verfahren). Sie können Ihre Einwilligung zum
+                Empfang des Newsletters jederzeit widerrufen. Dazu findet sich
+                in jedem Newsletter ein entsprechender Link.
               </p>
             </AccordionSection>
 
             <AccordionSection id="analytik" title="4. Webanalyse und Tracking">
               <h3 className="font-medium mb-2">4.1 Google Analytics</h3>
               <p>
-                Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist
-                die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+                Diese Website nutzt Funktionen des Webanalysedienstes Google
+                Analytics. Anbieter ist die Google Ireland Limited, Gordon
+                House, Barrow Street, Dublin 4, Irland.
               </p>
               <p className="mt-2">
-                Google Analytics verwendet Cookies. Die durch das Cookie erzeugten Informationen
-                über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in
-                den USA übertragen und dort gespeichert.
+                Google Analytics verwendet Cookies. Die durch das Cookie
+                erzeugten Informationen über Ihre Benutzung dieser Website
+                werden in der Regel an einen Server von Google in den USA
+                übertragen und dort gespeichert.
               </p>
               <p className="mt-2">
-                Wir haben die IP-Anonymisierung aktiviert. Dadurch wird Ihre IP-Adresse von Google
-                innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten
-                des Abkommens über den Europäischen Wirtschaftsraum vor der Übermittlung in die USA
-                gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google
-                in den USA übertragen und dort gekürzt.
+                Wir haben die IP-Anonymisierung aktiviert. Dadurch wird Ihre
+                IP-Adresse von Google innerhalb von Mitgliedstaaten der
+                Europäischen Union oder in anderen Vertragsstaaten des Abkommens
+                über den Europäischen Wirtschaftsraum vor der Übermittlung in
+                die USA gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse
+                an einen Server von Google in den USA übertragen und dort
+                gekürzt.
               </p>
               <p className="mt-2">
-                Sie können die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der
-                Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung
-                dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link
-                verfügbare Browser-Plugin herunterladen und installieren:{' '}
+                Sie können die Erfassung der durch das Cookie erzeugten und auf
+                Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer
+                IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch
+                Google verhindern, indem Sie das unter dem folgenden Link
+                verfügbare Browser-Plugin herunterladen und installieren:{" "}
                 <a
                   href="https://tools.google.com/dlpage/gaoptout?hl=de"
                   target="_blank"
@@ -225,16 +249,19 @@ const DatenschutzPage: React.FC = () => {
                 </a>
               </p>
 
-              <h3 className="font-medium mt-4 mb-2">4.2 Social Media Plug-ins</h3>
+              <h3 className="font-medium mt-4 mb-2">
+                4.2 Social Media Plug-ins
+              </h3>
               <p>
-                Auf unserer Website verwenden wir Social Plugins verschiedener sozialer Netzwerke.
-                Wenn Sie eine Website mit einem Social Plugin besuchen, kann eine direkte Verbindung
-                mit dem sozialen Netzwerk hergestellt werden.
+                Auf unserer Website verwenden wir Social Plugins verschiedener
+                sozialer Netzwerke. Wenn Sie eine Website mit einem Social
+                Plugin besuchen, kann eine direkte Verbindung mit dem sozialen
+                Netzwerk hergestellt werden.
               </p>
               <p className="mt-2">
-                Wenn Sie nicht möchten, dass soziale Netzwerke über unsere Website Daten über Sie
-                sammeln, müssen Sie sich vor Ihrem Besuch unserer Website aus diesen sozialen
-                Netzwerken ausloggen.
+                Wenn Sie nicht möchten, dass soziale Netzwerke über unsere
+                Website Daten über Sie sammeln, müssen Sie sich vor Ihrem Besuch
+                unserer Website aus diesen sozialen Netzwerken ausloggen.
               </p>
             </AccordionSection>
 
@@ -243,58 +270,73 @@ const DatenschutzPage: React.FC = () => {
               title="5. Einbindung von Diensten und Inhalten Dritter"
             >
               <p>
-                Es kann vorkommen, dass innerhalb unseres Onlineangebotes Inhalte oder Dienste von
-                Dritt-Anbietern, wie z.B. YouTube-Videos oder Kartenmaterial von Google-Maps
-                eingebunden werden. Bei der Einbindung von Inhalten der jeweiligen Anbieter werden
-                in der Regel die IP-Adressen der Nutzer verarbeitet.
+                Es kann vorkommen, dass innerhalb unseres Onlineangebotes
+                Inhalte oder Dienste von Dritt-Anbietern, wie z.B.
+                YouTube-Videos oder Kartenmaterial von Google-Maps eingebunden
+                werden. Bei der Einbindung von Inhalten der jeweiligen Anbieter
+                werden in der Regel die IP-Adressen der Nutzer verarbeitet.
               </p>
               <p className="mt-3">
-                Die Einbindung erfolgt auf Grundlage des Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
-                Interesse), da wir ein Interesse an einer attraktiven Darstellung unseres
-                Onlineangebotes haben.
+                Die Einbindung erfolgt auf Grundlage des Art. 6 Abs. 1 lit. f
+                DSGVO (berechtigtes Interesse), da wir ein Interesse an einer
+                attraktiven Darstellung unseres Onlineangebotes haben.
               </p>
             </AccordionSection>
 
-            <AccordionSection id="betroffenenrechte" title="6. Rechte der betroffenen Person">
+            <AccordionSection
+              id="betroffenenrechte"
+              title="6. Rechte der betroffenen Person"
+            >
               <p>Als betroffene Person haben Sie das Recht auf:</p>
               <ul className="list-disc pl-6 my-3 space-y-1">
                 <li>
-                  Auskunft über die verarbeiteten Daten und eine Kopie dieser Daten (Auskunftsrecht)
+                  Auskunft über die verarbeiteten Daten und eine Kopie dieser
+                  Daten (Auskunftsrecht)
                 </li>
-                <li>Berichtigung unrichtiger personenbezogener Daten (Recht auf Berichtigung)</li>
-                <li>Löschung der Sie betreffenden Daten (Recht auf Löschung)</li>
                 <li>
-                  Einschränkung der Datenverarbeitung (Recht auf Einschränkung der Verarbeitung)
+                  Berichtigung unrichtiger personenbezogener Daten (Recht auf
+                  Berichtigung)
+                </li>
+                <li>
+                  Löschung der Sie betreffenden Daten (Recht auf Löschung)
+                </li>
+                <li>
+                  Einschränkung der Datenverarbeitung (Recht auf Einschränkung
+                  der Verarbeitung)
                 </li>
                 <li>Datenübertragbarkeit (Recht auf Datenübertragbarkeit)</li>
                 <li>
-                  Widerspruch gegen die Verarbeitung Sie betreffender personenbezogener Daten
-                  (Widerspruchsrecht)
+                  Widerspruch gegen die Verarbeitung Sie betreffender
+                  personenbezogener Daten (Widerspruchsrecht)
                 </li>
               </ul>
               <p>
-                Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht
-                verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst in einer Weise verletzt
-                worden sind, können Sie sich bei der Aufsichtsbehörde beschweren. In Österreich ist
-                dies die Datenschutzbehörde.
+                Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das
+                Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen
+                Ansprüche sonst in einer Weise verletzt worden sind, können Sie
+                sich bei der Aufsichtsbehörde beschweren. In Österreich ist dies
+                die Datenschutzbehörde.
               </p>
             </AccordionSection>
 
             <AccordionSection id="datensicherheit" title="7. Datensicherheit">
               <p>
-                Wir verwenden innerhalb des Website-Besuchs das verbreitete TLS-Verfahren (Transport
-                Layer Security) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die
-                von Ihrem Browser unterstützt wird. Ob eine einzelne Seite unseres
-                Internetauftrittes verschlüsselt übertragen wird, erkennen Sie an der geschlossenen
-                Darstellung des Schüssel- beziehungsweise Schloss-Symbols in der unteren
-                Statusleiste Ihres Browsers.
+                Wir verwenden innerhalb des Website-Besuchs das verbreitete
+                TLS-Verfahren (Transport Layer Security) in Verbindung mit der
+                jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser
+                unterstützt wird. Ob eine einzelne Seite unseres
+                Internetauftrittes verschlüsselt übertragen wird, erkennen Sie
+                an der geschlossenen Darstellung des Schüssel- beziehungsweise
+                Schloss-Symbols in der unteren Statusleiste Ihres Browsers.
               </p>
               <p className="mt-3">
-                Wir bedienen uns im Übrigen geeigneter technischer und organisatorischer
-                Sicherheitsmaßnahmen, um Ihre Daten gegen zufällige oder vorsätzliche
-                Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den
-                unbefugten Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden
-                entsprechend der technologischen Entwicklung fortlaufend verbessert.
+                Wir bedienen uns im Übrigen geeigneter technischer und
+                organisatorischer Sicherheitsmaßnahmen, um Ihre Daten gegen
+                zufällige oder vorsätzliche Manipulationen, teilweisen oder
+                vollständigen Verlust, Zerstörung oder gegen den unbefugten
+                Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden
+                entsprechend der technologischen Entwicklung fortlaufend
+                verbessert.
               </p>
             </AccordionSection>
 
@@ -303,14 +345,15 @@ const DatenschutzPage: React.FC = () => {
               title="8. Aktualität und Änderung dieser Datenschutzerklärung"
             >
               <p>
-                Diese Datenschutzerklärung ist aktuell gültig und hat den Stand{' '}
-                {new Date().toLocaleDateString('de-AT')}.
+                Diese Datenschutzerklärung ist aktuell gültig und hat den Stand{" "}
+                {new Date().toLocaleDateString("de-AT")}.
               </p>
               <p className="mt-3">
-                Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter
-                gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese
-                Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann
-                jederzeit auf dieser Website abgerufen werden.
+                Durch die Weiterentwicklung unserer Website und Angebote oder
+                aufgrund geänderter gesetzlicher beziehungsweise behördlicher
+                Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu
+                ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit
+                auf dieser Website abgerufen werden.
               </p>
             </AccordionSection>
           </div>
