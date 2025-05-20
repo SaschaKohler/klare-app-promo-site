@@ -21,7 +21,8 @@ export default function HeroSection() {
           transition={{ duration: 0.7 }}
         >
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-klare-text dark:text-dark-klare-text">
-            {isEnglish ? "Transform Your Life" : "Verwandle Dein Leben"} <br /> {isEnglish ? "With The" : "Mit der"}{" "}
+            {isEnglish ? "Transform Your Life" : "Verwandle Dein Leben"} <br />{" "}
+            {isEnglish ? "With The" : "Mit der"}{" "}
             <span className="text-klare-a dark:text-dark-klare-a">
               {isEnglish ? "CLEAR Method" : "KLARE Methode"}
             </span>
@@ -34,7 +35,9 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/#call-to-action">
               <button className="bg-klare-k text-white hover:bg-klare-k/90 py-3 px-6 rounded-full font-medium transition-all text-lg shadow-lg flex items-center justify-center">
-                {isEnglish ? "Sign up for updates" : "Jetzt für Updates anmelden"}
+                {isEnglish
+                  ? "Sign up for updates"
+                  : "Jetzt für Updates anmelden"}
               </button>
             </Link>
             <Link href="/blog">
@@ -52,10 +55,14 @@ export default function HeroSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src={isEnglish ? "/images/app-store-badges/app-store-badge-en.svg" : "/images/app-store-badges/app-store-badge-de.svg"}
+                src={"/images/app-store-badges/app-store-badge-de.svg"}
                 width={120}
                 height={40}
-                alt={isEnglish ? "Download on the App Store" : "Im Apple App Store herunterladen"}
+                alt={
+                  isEnglish
+                    ? "Download on the App Store"
+                    : "Im Apple App Store herunterladen"
+                }
                 className="w-full h-auto"
               />
             </a>
@@ -64,10 +71,18 @@ export default function HeroSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src={isEnglish ? "/images/app-store-badges/google_play_store_badge_en.svg" : "/images/app-store-badges/google_play_store_badge_de.svg"}
+                src={
+                  isEnglish
+                    ? "/images/app-store-badges/google_play_store_badge_en.svg"
+                    : "/images/app-store-badges/google_play_store_badge_de.svg"
+                }
                 width={120}
                 height={40}
-                alt={isEnglish ? "Get it on Google Play" : "Im Google Play Store herunterladen"}
+                alt={
+                  isEnglish
+                    ? "Get it on Google Play"
+                    : "Im Google Play Store herunterladen"
+                }
                 className="w-full h-auto"
               />
             </a>
@@ -89,7 +104,11 @@ export default function HeroSection() {
                 src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.16.png"
                 fill
                 className="object-cover"
-                alt={isEnglish ? "CLEAR Method App Dashboard" : "KLARE Methode App Dashboard"}
+                alt={
+                  isEnglish
+                    ? "CLEAR Method App Dashboard"
+                    : "KLARE Methode App Dashboard"
+                }
                 priority
               />
             </div>
@@ -101,7 +120,11 @@ export default function HeroSection() {
                 src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.09.40.png"
                 fill
                 className="object-cover"
-                alt={isEnglish ? "CLEAR Method App Life Wheel" : "KLARE Methode App Lebensrad"}
+                alt={
+                  isEnglish
+                    ? "CLEAR Method App Life Wheel"
+                    : "KLARE Methode App Lebensrad"
+                }
                 priority
               />
             </div>
@@ -112,7 +135,11 @@ export default function HeroSection() {
                 src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.36.png"
                 fill
                 className="object-cover"
-                alt={isEnglish ? "CLEAR Method App Journal" : "KLARE Methode App Journal"}
+                alt={
+                  isEnglish
+                    ? "CLEAR Method App Journal"
+                    : "KLARE Methode App Journal"
+                }
                 priority
               />
             </div>

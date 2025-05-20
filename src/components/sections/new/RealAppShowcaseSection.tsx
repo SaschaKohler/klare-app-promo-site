@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -18,7 +18,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "welcome",
       name: isEnglish ? "Welcome" : "Willkommen",
-      description: isEnglish ? "The starting point of your transformation journey" : "Der Startpunkt deiner Transformationsreise",
+      description: isEnglish
+        ? "The starting point of your transformation journey"
+        : "Der Startpunkt deiner Transformationsreise",
       image: "/images/app-screenshots-organized/welcome-screen.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
@@ -27,7 +29,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "dashboard",
       name: "Dashboard",
-      description: isEnglish ? "Personalized overview of your progress" : "Personalisierte Übersicht deines Fortschritts",
+      description: isEnglish
+        ? "Personalized overview of your progress"
+        : "Personalisierte Übersicht deines Fortschritts",
       image: "/images/app-screenshots-organized/home-dashboard.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
@@ -36,7 +40,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "lifewheel",
       name: isEnglish ? "Life Wheel" : "Lebensrad",
-      description: isEnglish ? "Visualize your life areas" : "Visualisiere deine Lebensbereiche",
+      description: isEnglish
+        ? "Visualize your life areas"
+        : "Visualisiere deine Lebensbereiche",
       image: "/images/app-screenshots-organized/life-wheel.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
@@ -45,7 +51,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "journal",
       name: "Journal",
-      description: isEnglish ? "Reflection for deeper self-awareness" : "Reflexion für tiefere Selbsterkenntnis",
+      description: isEnglish
+        ? "Reflection for deeper self-awareness"
+        : "Reflexion für tiefere Selbsterkenntnis",
       image: "/images/app-screenshots-organized/journal-templates.png",
       color: "from-klare-r/30 to-klare-r/10",
       darkColor: "dark:from-dark-klare-r/40 dark:to-dark-klare-r/20",
@@ -54,7 +62,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "resources",
       name: isEnglish ? "Resources" : "Ressourcen",
-      description: isEnglish ? "Activate your personal resources" : "Aktiviere deine persönlichen Ressourcen",
+      description: isEnglish
+        ? "Activate your personal resources"
+        : "Aktiviere deine persönlichen Ressourcen",
       image: "/images/app-screenshots-organized/resources-library.png",
       color: "from-klare-e/30 to-klare-e/10",
       darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
@@ -63,7 +73,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "klare-method",
       name: isEnglish ? "CLEAR Method" : "KLARE-Methode",
-      description: isEnglish ? "Discover your path to congruence" : "Entdecke deinen Weg zur Kongruenz",
+      description: isEnglish
+        ? "Discover your path to congruence"
+        : "Entdecke deinen Weg zur Kongruenz",
       image: "/images/app-screenshots-organized/klare-k-module.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
@@ -72,7 +84,9 @@ export default function RealAppShowcaseSection() {
     {
       id: "vision-board",
       name: isEnglish ? "Vision Board" : "Vision Board",
-      description: isEnglish ? "Visualize your goals and dreams" : "Visualisiere deine Ziele und Träume",
+      description: isEnglish
+        ? "Visualize your goals and dreams"
+        : "Visualisiere deine Ziele und Träume",
       image: "/images/app-screenshots-organized/vision-board.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
@@ -87,15 +101,15 @@ export default function RealAppShowcaseSection() {
   useEffect(() => {
     // Next.js Image component übernimmt das Preloading automatisch für Bilder mit priority={true}
     // Wir können bei Bedarf noch zusätzlich prefetching für bestimmte Pfade einrichten
-    
+
     // Für fortgeschrittenes Preloading könnten wir NextJS Router oder eine spezielle API verwenden
     // aber in diesem Fall ist das nicht nötig, da wir bereits priority für wichtige Bilder setzen
-    
+
     // Die Funktion bleibt als Platzhalter für zukünftige Erweiterungen
     const preloadNextImages = () => {
       // Next.js übernimmt das Preloading automatisch
     };
-    
+
     preloadNextImages();
   }, [activeIndex]);
 
@@ -211,7 +225,9 @@ export default function RealAppShowcaseSection() {
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-              aria-label={isEnglish ? "Previous screenshot" : "Vorheriger Screenshot"}
+              aria-label={
+                isEnglish ? "Previous screenshot" : "Vorheriger Screenshot"
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -259,9 +275,11 @@ export default function RealAppShowcaseSection() {
                     ? "bg-klare-l w-8"
                     : "bg-gray-300 dark:bg-gray-600"
                 }`}
-                aria-label={isEnglish 
-                  ? `Go to screenshot ${index + 1}` 
-                  : `Zu Screenshot ${index + 1} wechseln`}
+                aria-label={
+                  isEnglish
+                    ? `Go to screenshot ${index + 1}`
+                    : `Zu Screenshot ${index + 1} wechseln`
+                }
               />
             ))}
           </div>
@@ -294,14 +312,14 @@ export default function RealAppShowcaseSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src={isEnglish 
-                  ? "/images/app-store-badges/app-store-badge-en.svg" 
-                  : "/images/app-store-badges/app-store-badge-de.svg"}
+                src={"/images/app-store-badges/app-store-badge-de.svg"}
                 width={120}
                 height={40}
-                alt={isEnglish 
-                  ? "Download on the App Store" 
-                  : "Im Apple App Store herunterladen"}
+                alt={
+                  isEnglish
+                    ? "Download on the App Store"
+                    : "Im Apple App Store herunterladen"
+                }
                 className="w-full h-auto"
               />
             </a>
@@ -310,14 +328,18 @@ export default function RealAppShowcaseSection() {
               className="w-32 h-auto transform transition-transform hover:scale-105"
             >
               <Image
-                src={isEnglish 
-                  ? "/images/app-store-badges/google_play_store_badge_en.svg" 
-                  : "/images/app-store-badges/google_play_store_badge_de.svg"}
+                src={
+                  isEnglish
+                    ? "/images/app-store-badges/google_play_store_badge_en.svg"
+                    : "/images/app-store-badges/google_play_store_badge_de.svg"
+                }
                 width={120}
                 height={40}
-                alt={isEnglish 
-                  ? "Get it on Google Play" 
-                  : "Im Google Play Store herunterladen"}
+                alt={
+                  isEnglish
+                    ? "Get it on Google Play"
+                    : "Im Google Play Store herunterladen"
+                }
                 className="w-full h-auto"
               />
             </a>
@@ -370,7 +392,9 @@ export default function RealAppShowcaseSection() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-klare-text dark:text-white mb-2">
-              {isEnglish ? "Personalized Experience" : "Personalisierte Erfahrung"}
+              {isEnglish
+                ? "Personalized Experience"
+                : "Personalisierte Erfahrung"}
             </h3>
             <p className="text-klare-text-secondary dark:text-gray-300">
               {isEnglish
@@ -491,3 +515,4 @@ export default function RealAppShowcaseSection() {
     </section>
   );
 }
+

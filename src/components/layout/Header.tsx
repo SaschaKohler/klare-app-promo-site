@@ -7,13 +7,16 @@ import { FiMenu, FiX } from "react-icons/fi";
 import KlareSvg from "../KlareSvg";
 import ClearSvg from "../ClearSvg";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isEnglish = pathname.startsWith('/en') || (typeof window !== 'undefined' && window.location.hostname.startsWith('en.'));
+  const isEnglish =
+    pathname.startsWith("/en") ||
+    (typeof window !== "undefined" &&
+      window.location.hostname.startsWith("en."));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,19 +68,19 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
-              href="/#features"
+              href={isEnglish ? "/en#features" : "/#features"}
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               {isEnglish ? "Features" : "Features"}
             </Link>
             <Link
-              href="/#methode"
+              href={isEnglish ? "/en#methode" : "/#methode"}
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               {isEnglish ? "CLEAR Method" : "KLARE Methode"}
             </Link>
             <Link
-              href="/#showcase"
+              href={isEnglish ? "/en#showcase" : "/#showcase"}
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               {isEnglish ? "Preview" : "Preview"}
@@ -89,7 +92,7 @@ export default function Header() {
             {/*   Über Uns */}
             {/* </Link> */}
             <Link
-              href="/#faq"
+              href={isEnglish ? "/en#faq" : "/#faq"}
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
             >
               {isEnglish ? "FAQ" : "FAQ"}
@@ -100,7 +103,7 @@ export default function Header() {
             >
               {isEnglish ? "Blog" : "Blog"}
             </Link>
-            <Link href="/#call-to-action">
+            <Link href={isEnglish ? "/#call-to-action" : "/#call-to-action"}>
               <button
                 className={`py-2 px-5 rounded-full font-medium transition-all ${
                   isScrolled
@@ -111,7 +114,7 @@ export default function Header() {
                 {isEnglish ? "Get Updates" : "Updates erhalten"}
               </button>
             </Link>
-            
+
             {/* Sprachumschalter */}
             <LanguageSwitcher />
           </nav>
@@ -146,21 +149,21 @@ export default function Header() {
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <Link
-              href="/#features"
+              href={isEnglish ? "/en#features" : "/#features"}
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               {isEnglish ? "Features" : "Features"}
             </Link>
             <Link
-              href="/#methode"
+              href={isEnglish ? "/en#methode" : "/#methode"}
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               {isEnglish ? "CLEAR Method" : "KLARE Methode"}
             </Link>
             <Link
-              href="/#showcase"
+              href={isEnglish ? "/en#showcase" : "/#showcase"}
               className={`font-medium hover:text-klare-k dark:hover:text-dark-klare-k ${isScrolled ? "text-klare-text dark:text-dark-klare-text" : "text-klare-text dark:text-dark-klare-text"}`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -173,7 +176,7 @@ export default function Header() {
             {/*   Über Uns */}
             {/* </Link> */}
             <Link
-              href="/#faq"
+              href={isEnglish ? "/en#faq" : "/#faq"}
               className="font-medium text-klare-text dark:text-dark-klare-text hover:text-klare-k dark:hover:text-dark-klare-k py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -187,14 +190,14 @@ export default function Header() {
               {isEnglish ? "Blog" : "Blog"}
             </Link>
             <Link
-              href="/#call-to-action"
+              href={isEnglish ? "/en#call-to-action" : "/#call-to-action"}
               onClick={() => setMobileMenuOpen(false)}
             >
               <button className="py-2 px-5 rounded-full font-medium bg-klare-k dark:bg-dark-klare-k text-white hover:bg-klare-k/90 dark:hover:bg-dark-klare-k/90 transition-all">
                 {isEnglish ? "Get Updates" : "Updates erhalten"}
               </button>
             </Link>
-            
+
             {/* Sprachumschalter im mobilen Menü */}
             <div className="py-2">
               <LanguageSwitcher />
