@@ -1,107 +1,73 @@
-# klare-app-promo-site
+# KLARE App Promo Website
 
-Die KLARE-App Promo-Website ist jetzt mit Mehrsprachigkeit ausgestattet!
+**Offizielle Promo-Website für die KLARE App von Sascha Kohler**
 
-## Neu hinzugefügte Features
+Die KLARE App ist eine innovative mobile Anwendung für persönliche Entwicklung und Lebensbalance, die voraussichtlich im Herbst 2025 auf den Markt kommt.
 
-1. **Mehrsprachige Unterstützung**:
-   - Deutschsprachige Seite auf `klare-methode.app` (Hauptdomain)
-   - Englischsprachige Seite auf `en.klare-methode.app` (Subdomain)
-   - Übersetzungsdateien in `/src/lib/i18n/`
+## Über die KLARE App
 
-2. **Sprachumschalter**:
-   - Einfaches Wechseln zwischen Deutsch und Englisch
-   - Intelligente Erkennung der aktuellen Sprache basierend auf Subdomain
+Die KLARE App basiert auf der KLARE Methode - einem strukturierten Ansatz zur Selbstreflexion und persönlichen Entwicklung. Die App wird von Sascha Kohler entwickelt und bietet Nutzern praktische Tools für:
 
-3. **CLEAR-Logo für die englische Version**:
-   - Anpassung mit CLEAR (statt KLARE) in der englischen Version
-   - Gleiche Farbschemata, aber anders angeordnet:
-     - C: Blau (wie K)
-     - L: Violett (unverändert)
-     - E: Pink (wie A)
-     - A: Amber (wie R)
-     - R: Grün (wie E)
+- Lebensrad-Visualisierung zur Bewertung verschiedener Lebensbereiche
+- Reflexions-Tools und Übungen
+- Zielsetzung und Fortschritts-Tracking
+- Persönliche Entwicklungsplanung
 
-4. **Übersetzungen**:
-   - Alle Texte sind in beiden Sprachen verfügbar
-   - Klare Übersetzungsstruktur für einfache Wartung und Erweiterung
+## Website Features
 
-## Setup für Mehrsprachigkeit
+### Mehrsprachige Unterstützung
+- **Deutsche Version**: Standard auf `klare-methode.app`
+- **Englische Version**: Verfügbar unter `klare-methode.app/en`
+- Die englische Version präsentiert die **CLEAR Method** als internationale Adaption der KLARE Methode
 
-### Struktur
+### KLARE vs. CLEAR Method
+- **KLARE** (Deutsch): Klarheit, Lebendigkeit, Achtsamkeit, Reflexion, Entwicklung
+- **CLEAR** (English): Clarity, Liveliness, Evolvement, Action, Realization
 
-- `/src/lib/i18n/de.ts`: Deutsche Übersetzungen
-- `/src/lib/i18n/en.ts`: Englische Übersetzungen
-- `/src/lib/i18n/I18nProvider.tsx`: Kontext-Provider für Übersetzungen
-- `/src/lib/i18n/index.ts`: Export der Übersetzungsfunktionen
-- `/src/app/en/`: Englische Version der Website
+### Responsive Design
+- Optimiert für alle Bildschirmgrößen
+- Modern und benutzerfreundlich
+- Schnelle Ladezeiten durch optimierte Bilder
 
-### Verwendung in Komponenten
+## Technische Details
 
-```tsx
-// HeroSection.tsx oder andere Komponenten
-"use client";
+### Tech Stack
+- **Framework**: Next.js 14 mit App Router
+- **Styling**: Tailwind CSS
+- **Internationalisierung**: Custom i18n-System
+- **Deployment**: Vercel-ready
 
-import { useI18n } from "@/lib/i18n/I18nProvider";
-
-export default function Component() {
-  const { t, isEnglish } = useI18n();
-
-  return (
-    <div>
-      <h1>{t('hero.title')}</h1>
-      <p>{t('hero.description')}</p>
-      
-      {/* Bedingte Logik basierend auf der Sprache */}
-      {isEnglish ? (
-        <ClearSvg letter="C" />
-      ) : (
-        <KlareSvg letter="K" />
-      )}
-    </div>
-  );
-}
+### Projektstruktur
+```
+klare-app-promo-site/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx          # Deutsche Hauptseite
+│   │   └── en/
+│   │       └── page.tsx      # Englische Version
+│   ├── components/           # Wiederverwendbare Komponenten
+│   ├── lib/i18n/            # Internationalisierung
+│   └── styles/              # Globale Styles
+└── public/
+    └── images/              # App-Screenshots und Assets
 ```
 
-## Deployment
+### Internationalisierung
+Das Projekt verwendet ein maßgeschneidertes i18n-System mit:
+- Typsichere Übersetzungen
+- Automatische Spracherkennung
+- Einfache Erweiterung für neue Sprachen
 
-Die Website sollte auf einer Domain eingerichtet werden, die Subdomains unterstützt:
+## Entwickler
 
-- Hauptdomain: `klare-methode.app` (deutsche Version)
-- Subdomain: `en.klare-methode.app` (englische Version)
+**Sascha Kohler**
+- Website: [skit.sascha-kohler.at](https://skit.sascha-kohler.at)
+- Spezialisiert auf React Native, Next.js und moderne Webentwicklung
 
-Die Spracherkennung basiert auf der Subdomain, daher ist es wichtig, dass beide URLs korrekt konfiguriert sind.
+## App Release
 
-## Erweiterung um weitere Sprachen
+Die KLARE App wird voraussichtlich im **Herbst 2025** für iOS und Android verfügbar sein.
 
-Um weitere Sprachen hinzuzufügen:
+## Lizenz
 
-1. Neue Übersetzungsdatei erstellen (z.B. `fr.ts` für Französisch)
-2. Übersetzungsdatei in `index.ts` importieren und in `translations` hinzufügen
-3. Den `Language`-Typ erweitern: `export type Language = 'de' | 'en' | 'fr';`
-4. Neue Subdomain einrichten (z.B. `fr.klare-methode.app`)
-5. Spracherkennung in `I18nProvider.tsx` anpassen
-
-## Server-Konfiguration
-
-Für die korrekte Funktion der subdomainbasierten Mehrsprachigkeit muss der Server so konfiguriert sein, dass er alle Anfragen an die gleiche Next.js-Anwendung weiterleitet, unabhängig von der Subdomain.
-
-### Beispiel nginx-Konfiguration
-
-```nginx
-server {
-    listen 80;
-    server_name klare-methode.app en.klare-methode.app;
-
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
-## Bekannte Einschränkungen
-
-- Da die Spracherkennung auf Client-Side JavaScript basiert, kann es beim ersten Laden der Seite zu einem kurzen "Flackern" kommen, bevor die richtige Sprache angezeigt wird.
-- Für eine vollständig SEO-optimierte Lösung wäre eine statische Generierung pro Sprache besser, was in einem späteren Update umgesetzt werden könnte.
+Dieses Projekt ist urheberrechtlich geschützt und dient als Promo-Material für die KLARE App von Sascha Kohler.

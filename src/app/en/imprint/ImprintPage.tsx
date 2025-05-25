@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { FileText, Shield, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 // Imprint Component
 const ImprintPage: React.FC = () => {

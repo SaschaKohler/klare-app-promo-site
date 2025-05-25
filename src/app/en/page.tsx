@@ -10,10 +10,8 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const pathname = usePathname();
-  const isEnglish =
-    pathname.startsWith("/en") ||
-    (typeof window !== "undefined" &&
-      window.location.hostname.startsWith("en."));
+  // Vereinfacht: Nur pfadbasierte Spracherkennung
+  const isEnglish = pathname.startsWith("/en");
 
   return (
     <main className="flex min-h-screen flex-col items-center">

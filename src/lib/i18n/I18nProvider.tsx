@@ -22,11 +22,8 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Language>("de");
 
   useEffect(() => {
-    // Sprache basierend auf Pfad oder Hostname ermitteln
-    const isEnglish =
-      pathname.startsWith("/en") ||
-      (typeof window !== "undefined" &&
-        window.location.hostname.startsWith("en."));
+    // Sprache nur basierend auf Pfad ermitteln (/en/...)
+    const isEnglish = pathname.startsWith("/en");
     setLang(isEnglish ? "en" : "de");
   }, [pathname]);
 

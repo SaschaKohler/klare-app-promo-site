@@ -13,10 +13,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isEnglish =
-    pathname.startsWith("/en") ||
-    (typeof window !== "undefined" &&
-      window.location.hostname.startsWith("en."));
+  // Vereinfacht: Nur pfadbasierte Spracherkennung
+  const isEnglish = pathname.startsWith("/en");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,7 +101,7 @@ export default function Header() {
             >
               {isEnglish ? "Blog" : "Blog"}
             </Link>
-            <Link href={isEnglish ? "/#call-to-action" : "/#call-to-action"}>
+            <Link href={isEnglish ? "/en#call-to-action" : "/#call-to-action"}>
               <button
                 className={`py-2 px-5 rounded-full font-medium transition-all ${
                   isScrolled

@@ -101,7 +101,29 @@ export default function HeroSection() {
             <div className="relative z-20 w-56 h-[480px] rounded-[28px] overflow-hidden shadow-xl border-[3px] border-gray-800">
               <div className="absolute inset-0 bg-black/5 w-full h-full"></div>
               <Image
-                src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.16.png"
+                src={isEnglish 
+                  ? "/images/app-screenshots-organized/journal-calendar-en.png"
+                  : "/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.16.png"
+                }
+                fill
+                className="object-cover"
+                alt={
+                  isEnglish
+                    ? "CLEAR Method App Journal"
+                    : "KLARE Methode App Journal"
+                }
+                priority
+              />
+            </div>
+
+            {/* Background App Screenshots */}
+            <div className="hidden md:block absolute -left-20 opacity-80 z-10 w-48 h-[420px] rounded-[28px] overflow-hidden shadow-lg border-[2px] border-gray-800 rotate-6 top-10">
+              <div className="absolute inset-0 bg-black/5 w-full h-full"></div>
+              <Image
+                src={isEnglish 
+                  ? "/images/app-screenshots-organized/home-dashboard-en.png"
+                  : "/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.09.40.png"
+                }
                 fill
                 className="object-cover"
                 alt={
@@ -113,32 +135,19 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* Background App Screenshots */}
-            <div className="hidden md:block absolute -left-20 opacity-80 z-10 w-48 h-[420px] rounded-[28px] overflow-hidden shadow-lg border-[2px] border-gray-800 rotate-6 top-10">
-              <div className="absolute inset-0 bg-black/5 w-full h-full"></div>
-              <Image
-                src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.09.40.png"
-                fill
-                className="object-cover"
-                alt={
-                  isEnglish
-                    ? "CLEAR Method App Life Wheel"
-                    : "KLARE Methode App Lebensrad"
-                }
-                priority
-              />
-            </div>
-
             <div className="hidden md:block absolute -right-20 opacity-80 z-10 w-48 h-[420px] rounded-[28px] overflow-hidden shadow-lg border-[2px] border-gray-800 -rotate-6 top-10">
               <div className="absolute inset-0 bg-black/5 w-full h-full"></div>
               <Image
-                src="/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.36.png"
+                src={isEnglish 
+                  ? "/images/app-screenshots-organized/login-screen-en.png"
+                  : "/images/app-screenshots/Simulator Screenshot - iPhone 16 Pro - 2025-05-07 at 17.10.36.png"
+                }
                 fill
                 className="object-cover"
                 alt={
                   isEnglish
-                    ? "CLEAR Method App Journal"
-                    : "KLARE Methode App Journal"
+                    ? "CLEAR Method App Login"
+                    : "KLARE Methode App Registrierung"
                 }
                 priority
               />

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { FileText, Shield, ExternalLink } from "lucide-react";
 
 // Terms of Service Component
 const TermsPage: React.FC = () => {

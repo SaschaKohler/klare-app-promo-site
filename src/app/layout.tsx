@@ -1,19 +1,22 @@
-import './globals.css';
-import { Inter, Montserrat } from 'next/font/google';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import { defaultSEO, siteConfig } from '@/lib/seo/config';
-import GlobalSchema from '@/components/seo/GlobalSchema';
-import CookieConsent from '@/components/CookieConsent';
-import PageViewTracker from '@/components/analytics/PageViewTracker';
-import GoogleTagManagerDirect from '@/components/analytics/GoogleTagManagerDirect';
-import ImageLoadScript from '@/components/utils/ImageLoadScript';
-import CustomHeadTags from '@/components/seo/CustomHeadTags';
-import { Suspense } from 'react';
-import { I18nProvider } from '@/lib/i18n/I18nProvider';
+import "./globals.css";
+import { Inter, Montserrat } from "next/font/google";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { defaultSEO, siteConfig } from "@/lib/seo/config";
+import GlobalSchema from "@/components/seo/GlobalSchema";
+import CookieConsent from "@/components/CookieConsent";
+import PageViewTracker from "@/components/analytics/PageViewTracker";
+import GoogleTagManagerDirect from "@/components/analytics/GoogleTagManagerDirect";
+import ImageLoadScript from "@/components/utils/ImageLoadScript";
+import CustomHeadTags from "@/components/seo/CustomHeadTags";
+import { I18nProvider } from "@/lib/i18n/I18nProvider";
+import DynamicLangSetter from "@/components/utils/DynamicLangSetter";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -32,10 +35,10 @@ export const metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'de-DE': 'https://klare-methode.app',
-      'en-US': 'https://en.klare-methode.app',
+      "de-DE": "https://klare-methode.app",
+      "en-US": "https://klare-methode.app/en",
     },
   },
   openGraph: {
@@ -50,32 +53,40 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  manifest: '/site.webmanifest',
+  manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' }
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     shortcut: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
-    ]
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
   },
   verification: {
     // Fill these in when you have the verification codes
-    google: 'google-site-verification-code',
+    google: "google-site-verification-code",
     // yandex: 'yandex verification code',
     // bing: 'bing verification code',
   },
@@ -86,50 +97,76 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Host-basierte Spracherkennung (für Produktion)
-  let lang = 'de';
-  if (typeof window !== 'undefined') {
-    lang = window.location.hostname.startsWith('en.') ? 'en' : 'de';
-  }
-
   return (
-    <html lang={lang} className={`${inter.variable} ${montserrat.variable} dark`}>
+    <html
+      lang="de" // Standard-Sprache, wird durch I18nProvider überschrieben
+      className={`${inter.variable} ${montserrat.variable} dark`}
+    >
       <head>
         {/* Next.js will automatically insert metadata, etc. here */}
         <CustomHeadTags />
-        {/* Preload für kritische Bilder */}
-        <link 
-          rel="preload" 
-          href="/images/app-screenshots-organized/welcome-screen.webp" 
-          as="image" 
+        {/* Preload für kritische Bilder - Deutsche Version */}
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/welcome-screen.webp"
+          as="image"
           type="image/webp"
         />
-        <link 
-          rel="preload" 
-          href="/images/app-screenshots-organized/home-dashboard.webp" 
-          as="image" 
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/home-dashboard.webp"
+          as="image"
           type="image/webp"
         />
-        {/* Fallback für Browser, die WebP nicht unterstützen */}
-        <link 
-          rel="preload" 
-          href="/images/app-screenshots-organized/welcome-screen.png" 
-          as="image" 
+        {/* Preload für kritische Bilder - Englische Version */}
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/welcome-screen-en.png"
+          as="image"
           type="image/png"
         />
-        <link 
-          rel="preload" 
-          href="/images/app-screenshots-organized/home-dashboard.png" 
-          as="image" 
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/home-dashboard-en.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/journal-calendar-en.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/login-screen-en.png"
+          as="image"
+          type="image/png"
+        />
+        {/* Fallback für Browser, die WebP nicht unterstützen */}
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/welcome-screen.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/app-screenshots-organized/home-dashboard.png"
+          as="image"
           type="image/png"
         />
         {/* Verhindern, dass der Browser gecachte Assets verwendet, die Probleme verursachen könnten */}
-        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta
+          httpEquiv="Cache-Control"
+          content="no-cache, no-store, must-revalidate"
+        />
         <meta httpEquiv="Pragma" content="no-cache" />
         <meta httpEquiv="Expires" content="0" />
       </head>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
         <I18nProvider>
+          <DynamicLangSetter />
           <GlobalSchema />
           <CookieConsent />
           <GoogleTagManagerDirect />
@@ -144,3 +181,4 @@ export default function RootLayout({
     </html>
   );
 }
+

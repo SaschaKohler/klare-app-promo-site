@@ -14,10 +14,6 @@ const nextConfig = {
         hostname: 'klare-methode.app',
       },
       {
-        protocol: 'https',
-        hostname: 'en.klare-methode.app',
-      },
-      {
         protocol: 'http',
         hostname: 'localhost',
       },
@@ -34,14 +30,7 @@ const nextConfig = {
   // Reduziere die Bundle-Größe
   poweredByHeader: false,
   // Verbessere Chunk-Loading und reduziere Client-Fehler
-  experimental: {
-    // Unterstützung für Pfad-basierte Internationalisierung
-    i18n: {
-      locales: ['de', 'en'],
-      defaultLocale: 'de',
-      localeDetection: true,
-    }
-  },
+  // Entfernt: experimental i18n-Konfiguration (nur pfadbasierte Internationalisierung)
   // Verbessere Chunk-Loading
   webpack: (config, { dev, isServer }) => {
     // Optimiere Chunk-Splitting für bessere Performance

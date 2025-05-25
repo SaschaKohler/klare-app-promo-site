@@ -21,7 +21,7 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "The starting point of your transformation journey"
         : "Der Startpunkt deiner Transformationsreise",
-      image: "/images/app-screenshots-organized/welcome-screen.png",
+      image: isEnglish ? "/images/app-screenshots-organized/welcome-screen-en.png" : "/images/app-screenshots-organized/welcome-screen.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
       preload: true,
@@ -32,18 +32,29 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Personalized overview of your progress"
         : "Personalisierte Übersicht deines Fortschritts",
-      image: "/images/app-screenshots-organized/home-dashboard.png",
+      image: isEnglish ? "/images/app-screenshots-organized/home-dashboard-en.png" : "/images/app-screenshots-organized/home-dashboard.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
       preload: true,
     },
     {
+      id: "dashboard-activities",
+      name: isEnglish ? "Activities" : "Aktivitäten",
+      description: isEnglish
+        ? "Your next steps for continuous growth"
+        : "Deine nächsten Schritte für kontinuierliches Wachstum",
+      image: isEnglish ? "/images/app-screenshots-organized/home-dashboard-activities-en.png" : "/images/app-screenshots-organized/home-dashboard.png",
+      color: "from-klare-l/30 to-klare-l/10",
+      darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
+      preload: false,
+    },
+    {
       id: "lifewheel",
       name: isEnglish ? "Life Wheel" : "Lebensrad",
       description: isEnglish
-        ? "Visualize your life areas"
-        : "Visualisiere deine Lebensbereiche",
-      image: "/images/app-screenshots-organized/life-wheel.png",
+        ? "Visualize and edit your life areas"
+        : "Visualisiere und bearbeite deine Lebensbereiche",
+      image: isEnglish ? "/images/app-screenshots-organized/life-wheel-edit-en.png" : "/images/app-screenshots-organized/life-wheel.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
       preload: false,
@@ -54,20 +65,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Reflection for deeper self-awareness"
         : "Reflexion für tiefere Selbsterkenntnis",
-      image: "/images/app-screenshots-organized/journal-templates.png",
+      image: isEnglish ? "/images/app-screenshots-organized/journal-calendar-en.png" : "/images/app-screenshots-organized/journal-templates.png",
       color: "from-klare-r/30 to-klare-r/10",
       darkColor: "dark:from-dark-klare-r/40 dark:to-dark-klare-r/20",
-      preload: false,
-    },
-    {
-      id: "resources",
-      name: isEnglish ? "Resources" : "Ressourcen",
-      description: isEnglish
-        ? "Activate your personal resources"
-        : "Aktiviere deine persönlichen Ressourcen",
-      image: "/images/app-screenshots-organized/resources-library.png",
-      color: "from-klare-e/30 to-klare-e/10",
-      darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
       preload: false,
     },
     {
@@ -76,20 +76,20 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Discover your path to congruence"
         : "Entdecke deinen Weg zur Kongruenz",
-      image: "/images/app-screenshots-organized/klare-k-module.png",
+      image: isEnglish ? "/images/app-screenshots-organized/klare-method-overview-en.png" : "/images/app-screenshots-organized/klare-k-module.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
       preload: false,
     },
     {
-      id: "vision-board",
-      name: isEnglish ? "Vision Board" : "Vision Board",
+      id: "login",
+      name: isEnglish ? "Login" : "Anmelden",
       description: isEnglish
-        ? "Visualize your goals and dreams"
-        : "Visualisiere deine Ziele und Träume",
-      image: "/images/app-screenshots-organized/vision-board.png",
-      color: "from-klare-a/30 to-klare-a/10",
-      darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
+        ? "Secure access to your personal journey"
+        : "Sicherer Zugang zu deiner persönlichen Reise",
+      image: isEnglish ? "/images/app-screenshots-organized/login-screen-en.png" : "/images/app-screenshots-organized/welcome-screen.png",
+      color: "from-klare-e/30 to-klare-e/10",
+      darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
       preload: false,
     },
   ];

@@ -9,51 +9,32 @@ export default function LanguageSwitcher() {
   const [currentLang, setCurrentLang] = useState<"de" | "en">("de");
 
   useEffect(() => {
-    // Ermitteln der aktuellen Sprache basierend auf der URL
-    const isEnglish =
-      pathname.startsWith("/en") ||
-      (typeof window !== "undefined" &&
-        window.location.hostname.startsWith("en."));
+    // Ermitteln der aktuellen Sprache nur basierend auf dem Pfad
+    const isEnglish = pathname.startsWith("/en");
     setCurrentLang(isEnglish ? "en" : "de");
   }, [pathname]);
 
-  const getTargetUrl = () => {
-    if (typeof window !== "undefined") {
-      const hostname = window.location.hostname;
-      const protocol = window.location.protocol;
-      const path = window.location.pathname;
-
-      // Prüfen ob wir auf localhost sind
-      const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
-
-      if (isLocalhost) {
-        // Beim Localhost verwenden wir Pfad-basierte Sprache
-        if (currentLang === "de") {
-          // Wechsel zu Englisch - Stelle sicher, dass wir nicht doppelt /en haben
-          const cleanPath = path.replace(/^\/en/, "");
-          return `/en${cleanPath}`;
-        } else {
-          // Wechsel zu Deutsch - Entferne /en Präfix
-          return path.replace(/^\/en/, "") || "/";
-        }
-      } else {
-        // Bei Produktions-Domain verwenden wir Subdomain-basierte Sprache
-        if (currentLang === "de") {
-          // Wechsel zu Englisch
-          return `${protocol}//en.${hostname.replace(/^en\./, "")}${path}`;
-        } else {
-          // Wechsel zu Deutsch
-          return `${protocol}//${hostname.replace(/^en\./, "")}${path}`;
-        }
+  const getTargetUrl = (targetLang: "de" | "en") => {
+    if (targetLang === "en") {
+      // Wechsel zu Englisch: /en/ dem aktuellen Pfad voranstellen
+      if (pathname.startsWith("/en")) {
+        return pathname; // Bereits auf Englisch
       }
+      return `/en${pathname === "/" ? "" : pathname}`;
+    } else {
+      // Wechsel zu Deutsch: /en/ vom Pfad entfernen
+      if (pathname.startsWith("/en")) {
+        const germanPath = pathname.substring(3);
+        return germanPath || "/";
+      }
+      return pathname; // Bereits auf Deutsch
     }
-    return "#";
   };
 
   return (
     <div className="flex items-center space-x-2">
       <Link
-        href={currentLang === "en" ? getTargetUrl() : "#"}
+        href={getTargetUrl("de")}
         className={`px-2 py-1 text-sm font-medium rounded ${
           currentLang === "de"
             ? "bg-klare-k text-white"
@@ -63,7 +44,7 @@ export default function LanguageSwitcher() {
         DE
       </Link>
       <Link
-        href={currentLang === "de" ? getTargetUrl() : "#"}
+        href={getTargetUrl("en")}
         className={`px-2 py-1 text-sm font-medium rounded ${
           currentLang === "en"
             ? "bg-klare-k text-white"
