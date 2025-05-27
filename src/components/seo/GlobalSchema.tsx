@@ -1,10 +1,16 @@
 'use client';
 
-import { generateOrganizationSchema, generateAppSchema } from '@/lib/seo/schema';
+import { usePathname } from 'next/navigation';
+import { generateOrganizationSchema, generateAppSchema, generateWebsiteSchema } from '@/lib/seo/schema';
 
 export default function GlobalSchema() {
-  const organizationSchema = generateOrganizationSchema();
-  const appSchema = generateAppSchema();
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en');
+  const lang = isEnglish ? 'en' : 'de';
+  
+  const organizationSchema = generateOrganizationSchema(lang);
+  const appSchema = generateAppSchema(lang);
+  const websiteSchema = generateWebsiteSchema(lang);
 
   return (
     <>
@@ -15,6 +21,10 @@ export default function GlobalSchema() {
       <script 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+      />
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
     </>
   );

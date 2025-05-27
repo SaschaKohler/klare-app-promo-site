@@ -2,13 +2,14 @@ import "./globals.css";
 import { Inter, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { defaultSEO, siteConfig } from "@/lib/seo/config";
+import { getDefaultSEO, siteConfig } from "@/lib/seo/config";
 import GlobalSchema from "@/components/seo/GlobalSchema";
 import CookieConsent from "@/components/CookieConsent";
 import PageViewTracker from "@/components/analytics/PageViewTracker";
 import GoogleTagManagerDirect from "@/components/analytics/GoogleTagManagerDirect";
 import ImageLoadScript from "@/components/utils/ImageLoadScript";
 import CustomHeadTags from "@/components/seo/CustomHeadTags";
+import HreflangTags from "@/components/seo/HreflangTags";
 import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import DynamicLangSetter from "@/components/utils/DynamicLangSetter";
 
@@ -21,11 +22,11 @@ const montserrat = Montserrat({
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: defaultSEO.title,
+    default: getDefaultSEO().title,
     template: `%s | ${siteConfig.name}`,
   },
-  description: defaultSEO.description,
-  keywords: siteConfig.mainKeywords,
+  description: getDefaultSEO().description,
+  keywords: siteConfig.content.de.mainKeywords,
   authors: [{ name: siteConfig.orgName }],
   creator: siteConfig.orgName,
   publisher: siteConfig.orgName,
@@ -39,13 +40,14 @@ export const metadata = {
     languages: {
       "de-DE": "https://klare-methode.app",
       "en-US": "https://klare-methode.app/en",
+      "x-default": "https://klare-methode.app",
     },
   },
   openGraph: {
-    ...defaultSEO.openGraph,
+    ...getDefaultSEO().openGraph,
   },
   twitter: {
-    ...defaultSEO.twitter,
+    ...getDefaultSEO().twitter,
   },
   robots: {
     index: true,
@@ -85,8 +87,7 @@ export const metadata = {
     ],
   },
   verification: {
-    // Fill these in when you have the verification codes
-    google: "google-site-verification-code",
+    google: "google-site-verification-code", // Replace with actual verification code
     // yandex: 'yandex verification code',
     // bing: 'bing verification code',
   },
@@ -105,6 +106,7 @@ export default function RootLayout({
       <head>
         {/* Next.js will automatically insert metadata, etc. here */}
         <CustomHeadTags />
+        <HreflangTags />
         {/* Preload für kritische Bilder - Deutsche Version */}
         <link
           rel="preload"
@@ -156,13 +158,9 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
-        {/* Verhindern, dass der Browser gecachte Assets verwendet, die Probleme verursachen könnten */}
-        <meta
-          httpEquiv="Cache-Control"
-          content="no-cache, no-store, must-revalidate"
-        />
-        <meta httpEquiv="Pragma" content="no-cache" />
-        <meta httpEquiv="Expires" content="0" />
+        {/* SEO & Performance Optimizations */}
+        <meta name="theme-color" content="#6366F1" />
+        <meta name="color-scheme" content="dark light" />
       </head>
       <body className="bg-white dark:bg-dark-klare-bg text-klare-text dark:text-dark-klare-text">
         <I18nProvider>
