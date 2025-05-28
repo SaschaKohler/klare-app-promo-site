@@ -21,7 +21,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "The starting point of your transformation journey"
         : "Der Startpunkt deiner Transformationsreise",
-      image: isEnglish ? "/images/app-screenshots-organized/welcome-screen-en.png" : "/images/app-screenshots-organized/welcome-screen.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/welcome-screen-en.png"
+        : "/images/app-screenshots-organized/welcome-screen.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
       preload: true,
@@ -32,7 +34,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Personalized overview of your progress"
         : "Personalisierte Übersicht deines Fortschritts",
-      image: isEnglish ? "/images/app-screenshots-organized/home-dashboard-en.png" : "/images/app-screenshots-organized/home-dashboard.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/home-dashboard-en.png"
+        : "/images/app-screenshots-organized/home-dashboard.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
       preload: true,
@@ -43,7 +47,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Your next steps for continuous growth"
         : "Deine nächsten Schritte für kontinuierliches Wachstum",
-      image: isEnglish ? "/images/app-screenshots-organized/home-dashboard-activities-en.png" : "/images/app-screenshots-organized/home-dashboard.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/dashboard-activities-en.png"
+        : "/images/app-screenshots-organized/dashboard-activities.png",
       color: "from-klare-l/30 to-klare-l/10",
       darkColor: "dark:from-dark-klare-l/40 dark:to-dark-klare-l/20",
       preload: false,
@@ -54,7 +60,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Visualize and edit your life areas"
         : "Visualisiere und bearbeite deine Lebensbereiche",
-      image: isEnglish ? "/images/app-screenshots-organized/life-wheel-edit-en.png" : "/images/app-screenshots-organized/life-wheel.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/life-wheel-en.png"
+        : "/images/app-screenshots-organized/life-wheel.png",
       color: "from-klare-a/30 to-klare-a/10",
       darkColor: "dark:from-dark-klare-a/40 dark:to-dark-klare-a/20",
       preload: false,
@@ -65,7 +73,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Reflection for deeper self-awareness"
         : "Reflexion für tiefere Selbsterkenntnis",
-      image: isEnglish ? "/images/app-screenshots-organized/journal-calendar-en.png" : "/images/app-screenshots-organized/journal-templates.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/journal-calendar-en.png"
+        : "/images/app-screenshots-organized/journal-calendar.png",
       color: "from-klare-r/30 to-klare-r/10",
       darkColor: "dark:from-dark-klare-r/40 dark:to-dark-klare-r/20",
       preload: false,
@@ -76,7 +86,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Discover your path to congruence"
         : "Entdecke deinen Weg zur Kongruenz",
-      image: isEnglish ? "/images/app-screenshots-organized/klare-method-overview-en.png" : "/images/app-screenshots-organized/klare-k-module.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/klare-method-overview-en.png"
+        : "/images/app-screenshots-organized/klare-method-overview.png",
       color: "from-klare-k/30 to-klare-k/10",
       darkColor: "dark:from-dark-klare-k/40 dark:to-dark-klare-k/20",
       preload: false,
@@ -87,7 +99,9 @@ export default function RealAppShowcaseSection() {
       description: isEnglish
         ? "Secure access to your personal journey"
         : "Sicherer Zugang zu deiner persönlichen Reise",
-      image: isEnglish ? "/images/app-screenshots-organized/login-screen-en.png" : "/images/app-screenshots-organized/welcome-screen.png",
+      image: isEnglish
+        ? "/images/app-screenshots-organized/login-screen-en.png"
+        : "/images/app-screenshots-organized/login-screen.png",
       color: "from-klare-e/30 to-klare-e/10",
       darkColor: "dark:from-dark-klare-e/40 dark:to-dark-klare-e/20",
       preload: false,
@@ -515,4 +529,3 @@ export default function RealAppShowcaseSection() {
     </section>
   );
 }
-
